@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Deploy
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -21,14 +21,8 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: build the project
+    - name: deploy the project
       run: |
         npm install
         npm run build
-    - name: deploy the project
-      uses: ./
-      with:
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        remote_url: https://github.com/dotku/ppewholesale.git
-        target_directory: build
+        npm run deploy

@@ -25,7 +25,10 @@ jobs:
       run: |
         npm install
         npm run build
-    - name: publish the project
-      run: |
-        rm -rf docs
-        mv build docs
+    - name: deploy the project
+      uses: ./
+      with:
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        remote_url: https://github.com/appleboy/gh-pages-action.git
+        target_directory: build

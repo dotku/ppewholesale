@@ -2,7 +2,7 @@
 
 We provide numbers of Medical / non-medial PPE products and service.
 
-## Partners
+## Resource
 
 ### EUA (Emergency Use Authorizations) Channel
 

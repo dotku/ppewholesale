@@ -1,5 +1,4 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import { List, ListItem, ListItemText } from "@material-ui/core";
 
 function GeneralProviders() {
@@ -24,19 +23,25 @@ function GeneralProviders() {
     { title: "Daddy Baby (KN95)", subtitle: "爹地宝贝" },
     { title: "Page (KN95)", subtitle: "佩吉" },
   ];
-  const listItems = items.map((item) => (
-    <ListItem>
-      <ListItemText
-        primary={item.title}
-        secondary={item.subtitle}
-      ></ListItemText>
-    </ListItem>
-  ));
+  const listItems = items.map((item) => {
+    const bodyContent = `number of need:%0D%0Alocation of need:%0D%0Atargeted price:%0D%0A`;
+    const hrefContent = `mailto:jay.lin@ppewholesale?subject=Query ${item.title}&body=${bodyContent}`;
+    return (
+      <ListItem
+        button
+        component="a"
+        href={hrefContent}
+      >
+        <ListItemText
+          primary={item.title}
+          secondary={item.subtitle}
+        ></ListItemText>
+      </ListItem>
+    );
+  });
   return <List>{listItems}</List>;
 }
 export default function Providers() {
-  const input = `
-    `;
 
   return (
     <React.Fragment>
@@ -155,7 +160,6 @@ export default function Providers() {
         <p>### General</p>
         <p>** not in the Niosh or EUA listed</p>
         <GeneralProviders />
-        <ReactMarkdown source={input} />
       </div>
     </React.Fragment>
   );

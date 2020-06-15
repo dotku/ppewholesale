@@ -1,62 +1,162 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import React from "react";
+import ReactMarkdown from "react-markdown";
+import { List, ListItem, ListItemText } from "@material-ui/core";
 
+function GeneralProviders() {
+  const items = [
+    { title: "Yuejie (KN95, N95, Disposiable Chidren Mask)", subtitle: "月洁" },
+    {
+      title: "Xnyee (Disposible Mask, Disposible Children Mask)",
+      subtitle: "心怡医疗",
+    },
+    { title: "Ruimaishu (KN95)", subtitle: "瑞迈舒" },
+    { title: "Fengle (Child Disposible Mask)", subtitle: "丰乐医疗" },
+    { title: "Zhilianbao (Disposible Protective Mask)", subtitle: "智联宝" },
+    { title: "NutriVsta (Disposible Medical Mask)" },
+    { title: "RealTone (Disposiable Medial Mask)", subtitle: "通华伟业" },
+    {
+      title:
+        "Jiutianlv (KN95, Disposiable Medical Mask, Disposible Children Mask)",
+      subtitle: "九天绿",
+    },
+    { title: "Changzhang (Disposible Children Mask)", subtitle: "常展" },
+    { title: "Taidakang (KN95, N95)", subtitle: "泰达康" },
+    { title: "Daddy Baby (KN95)", subtitle: "爹地宝贝" },
+    { title: "Page (KN95)", subtitle: "佩吉" },
+  ];
+  const listItems = items.map((item) => (
+    <ListItem>
+      <ListItemText
+        primary={item.title}
+        secondary={item.subtitle}
+      ></ListItemText>
+    </ListItem>
+  ));
+  return <List>{listItems}</List>;
+}
 export default function Providers() {
-
   const input = `
-    ### EUA (Emergency Use Authorizations) Channel
-
-    <https://www.fda.gov/media/136663/download>
-    Updated: June 11, 2020
-
-    - 3M Company
-    - AOK Tooling Ltd.
-    - BYD Precision Manufacture Co. Ltd. 比亚迪
-    - Dongguan Arun Industrial Co., LTD 海陆通
-    - ESound Medical Device Co., Ltd. 亿信
-    - Guangzhou Harley Commodity Company Limited 哈雷
-    - Guangzhou Powecom Labor Insurance Supplies Co., LTD 保为康
-    - Jiande Chaomei Daily Chemicals Co. 朝美
-    - Qingdao Miuton Medical Co., Ltd 明药堂
-    - Rizhao Sanqi Medical & Health Articles Co., Ltd 日照三奇
-    - Shanghai Dasheng Health Products Manufacture Company, Ltd. 上海大胜
-    - Weini Technology Development Co., Ltd 威尼科技
-
-    ### Niosh
-
-    - 3M Company
-    - AOK Tooling Ltd.
-    - BYD Precision Manufacture Co. Ltd.
-    - Guangzhou Harley Commodity Company Limited
-    - Rizhao Sanqi Medical & Health Articles Co., Ltd
-    - Shanghai Dasheng Health Products Manufacture Company, Ltd.
-    - Makrite Industries, Inc.
-    - Jinfuyu Industrial Company, Ltd.
-    - Xiantao Zhongyi Safety Protection Products Company, Ltd.
-
-    ### General
-
-    ** not in the Niosh or EUA listed
-
-    - Yuejie (KN95, N95, Disposiable Chidren Mask) 月洁
-    - Xnyee (Disposible Mask, Disposible Children Mask) 心怡医疗
-    - Ruimaishu (KN95) 瑞迈舒
-    - Fengle (Child Disposible Mask) 丰乐医疗
-    - Zhilianbao (Disposible Protective Mask) 智联宝
-    - NutriVsta (Disposible Medical Mask)
-    - RealTone (Disposiable Medial Mask) 通华伟业
-    - Jiutianlv (KN95, Disposiable Medical Mask, Disposible Children Mask) 九天绿
-    - Changzhang (Disposible Children Mask) 常展
-    - Taidakang (KN95, N95) 泰达康
-    - Daddy Baby (KN95) 爹地宝贝
-    - Page (KN95) 佩吉
     `;
 
   return (
     <React.Fragment>
-      <div style={{padding: '20px'}}>
-        <ReactMarkdown source={input}/>
+      <div>
+        <p>### EUA (Emergency Use Authorizations) Channel</p>
+        <a href="https://www.fda.gov/media/136663/download">
+          https://www.fda.gov/media/136663/download
+        </a>
+        <p>Updated: June 11, 2020</p>
+        <List>
+          <ListItem button>
+            <ListItemText primary="3M Company" secondary="" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary="AOK Tooling Ltd." secondary="" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="BYD Precision Manufacture Co. Ltd."
+              secondary="比亚迪"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="Dongguan Arun Industrial Co., LTD "
+              secondary="海陆通"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="ESound Medical Device Co., Ltd."
+              secondary="亿信"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="Guangzhou Harley Commodity Company Limited"
+              secondary="哈雷"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="Guangzhou Powecom Labor Insurance Supplies Co., LTD"
+              secondary="保为康"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="Jiande Chaomei Daily Chemicals Co."
+              secondary="朝美"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="Qingdao Miuton Medical Co., Ltd"
+              secondary="明药堂"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="Rizhao Sanqi Medical & Health Articles Co., Ltd"
+              secondary="日照三奇"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="Shanghai Dasheng Health Products Manufacture Company, Ltd."
+              secondary="上海大胜"
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary="Weini Technology Development Co., Ltd"
+              secondary="威尼科技"
+            />
+          </ListItem>
+        </List>
+        <p>### Niosh</p>
+        <List>
+          <ListItem button>
+            <ListItemText>3M Company</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>AOK Tooling Ltd.</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>BYD Precision Manufacture Co. Ltd.</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>
+              Guangzhou Harley Commodity Company Limited
+            </ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>
+              Rizhao Sanqi Medical &amp; Health Articles Co., Ltd
+            </ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>
+              Shanghai Dasheng Health Products Manufacture Company, Ltd.
+            </ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>Makrite Industries, Inc.</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>Jinfuyu Industrial Company, Ltd.</ListItemText>
+          </ListItem>
+          <ListItem button>
+            <ListItemText>
+              Xiantao Zhongyi Safety Protection Products Company, Ltd.
+            </ListItemText>
+          </ListItem>
+        </List>
+        <p>### General</p>
+        <p>** not in the Niosh or EUA listed</p>
+        <GeneralProviders />
+        <ReactMarkdown source={input} />
       </div>
     </React.Fragment>
-  )
+  );
 }

@@ -54,7 +54,9 @@ export default function Providers() {
 
   return (
     <React.Fragment>
-      <ReactMarkdown source={input}/>
+      <div style={{padding: '20px'}}>
+        <ReactMarkdown source={input}/>
+      </div>
     </React.Fragment>
   )
 }

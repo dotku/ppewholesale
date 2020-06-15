@@ -2,6 +2,8 @@
 
 We provide numbers of Medical / non-medial PPE products and service.
 
+![Deploy](https://github.com/dotku/ppewholesale/workflows/Deploy/badge.svg)
+
 ## Resource
 
 ### EUA (Emergency Use Authorizations) Channel

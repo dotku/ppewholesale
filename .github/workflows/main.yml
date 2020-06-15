@@ -21,8 +21,10 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: deploy the project
+    - name: build the project
       run: |
         npm install
         npm run build
+    - name: deploy the project
+      run: |
         npm run deploy

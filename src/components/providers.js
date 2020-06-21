@@ -27,11 +27,7 @@ function GeneralProviders() {
     const bodyContent = `number of need:%0D%0Alocation of need:%0D%0Atargeted price:%0D%0A`;
     const hrefContent = `mailto:jay.lin@ppewholesale?subject=Query ${item.title}&body=${bodyContent}`;
     return (
-      <ListItem
-        button
-        component="a"
-        href={hrefContent}
-      >
+      <ListItem button component="a" href={hrefContent}>
         <ListItemText
           primary={item.title}
           secondary={item.subtitle}
@@ -42,7 +38,6 @@ function GeneralProviders() {
   return <List>{listItems}</List>;
 }
 export default function Providers() {
-
   return (
     <React.Fragment>
       <div>
@@ -128,25 +123,34 @@ export default function Providers() {
             <ListItemText>AOK Tooling Ltd.</ListItemText>
           </ListItem>
           <ListItem button>
-            <ListItemText>BYD Precision Manufacture Co. Ltd.</ListItemText>
+            <ListItemText
+              primary="BYD Precision Manufacture Co. Ltd."
+              secondary="比亚迪"
+            />
           </ListItem>
           <ListItem button>
-            <ListItemText>
-              Guangzhou Harley Commodity Company Limited
-            </ListItemText>
+            <ListItemText
+              primary="Guangzhou Harley Commodity Company Limited"
+              secondary="广州哈雷"
+            />
           </ListItem>
           <ListItem button>
-            <ListItemText>
-              Rizhao Sanqi Medical &amp; Health Articles Co., Ltd
-            </ListItemText>
+            <ListItemText
+              primary="Rizhao Sanqi Medical &amp; Health Articles Co., Ltd"
+              secondary="日照三奇"
+            />
           </ListItem>
           <ListItem button>
-            <ListItemText>
-              Shanghai Dasheng Health Products Manufacture Company, Ltd.
-            </ListItemText>
+            <ListItemText
+              primayr="Shanghai Dasheng Health Products Manufacture Company, Ltd."
+              secondary="上海大胜"
+            />
           </ListItem>
           <ListItem button>
-            <ListItemText>Makrite Industries, Inc.</ListItemText>
+            <ListItemText
+              primayr="Makrite Industries, Inc."
+              secondary="麦特瑞"
+            />
           </ListItem>
           <ListItem button>
             <ListItemText>Jinfuyu Industrial Company, Ltd.</ListItemText>

@@ -1,5 +1,6 @@
 import React from "react";
 import { List, ListItem, ListItemText } from "@material-ui/core";
+import Gloves from "./gloves";
 
 function GeneralProviders() {
   const items = [
@@ -41,6 +42,7 @@ export default function Providers() {
   return (
     <React.Fragment>
       <div>
+        <Gloves />
         <p>### EUA (Emergency Use Authorizations) Channel</p>
         <a href="https://www.fda.gov/media/136663/download">
           https://www.fda.gov/media/136663/download

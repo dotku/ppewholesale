@@ -1,6 +1,6 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
-import { Typography, Container, List, ListItem, ListItemText, Checkbox, ListItemIcon, TextField, Card, Grid, CardContent} from '@material-ui/core';
+import { Typography, Container, TextField, Card, Grid, CardContent} from '@material-ui/core';
 
 function CurrencyFormatCustom(props) {
   const { inputRef, onChange, ...other } = props;

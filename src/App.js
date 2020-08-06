@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.css";
 import Home from "./components/home"
-import { Catelog } from "./components/catelog";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Gloves from "./components/vendors/gloves";
 import Top from "./components/common/top";
 import Order from "./components/order";
 
-
 function App() {
-  const body = `proudct:%0D%0Anumber in need:%0D%0Atargeted price:%0D%0Atargeted location:%0D%0A`;
+  // const body = `proudct:%0D%0Anumber in need:%0D%0Atargeted price:%0D%0Atargeted location:%0D%0A`;
   return (
       <Router>
         <div className="App">

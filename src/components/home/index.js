@@ -1,7 +1,6 @@
 import React from "react";
 import Providers from "../vendors";
 import Footer from "../common/footer";
-import Top from "../common/top";
 import { Typography, Divider } from "@material-ui/core";
 
 function Home() {

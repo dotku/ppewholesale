@@ -40,13 +40,13 @@ const useStyles = makeStyles((theme) => ({
 export default function Top() {
   const classes = useStyles();
   return (
-    <AppBar position="relative">
-        <Toolbar>
-          <SupervisedUserCircleIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            PPE Wholesale &lt;3 US
-          </Typography>
-        </Toolbar>
-      </AppBar>
+    <AppBar position="fixed">
+      <Toolbar>
+        <SupervisedUserCircleIcon className={classes.icon} />
+        <Typography variant="h6" color="inherit" noWrap>
+          PPE Wholesale &lt;3 US
+        </Typography>
+      </Toolbar>
+    </AppBar>
   )
 }

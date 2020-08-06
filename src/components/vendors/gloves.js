@@ -29,8 +29,8 @@ export default function Gloves() {
     <div>
       <p>### Gloves</p>
       <List>
-          {gloves.map(item => 
-          <ListItem button>
+          {gloves.map((item, idx) => 
+          <ListItem button key={idx}>
             <ListItemText
             primary={item.name}
             secondary={item.locale}

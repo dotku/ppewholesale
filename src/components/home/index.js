@@ -1,6 +1,5 @@
 import React from "react";
 import Providers from "../vendors";
-import Footer from "../common/footer";
 import { Typography, Divider } from "@material-ui/core";
 
 function Home() {
@@ -28,8 +27,6 @@ function Home() {
           <li>wechat: weijingjaylin</li>
         </ul>
       </div>
-
-      <Footer />
     </div>
   );
 }

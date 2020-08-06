@@ -24,11 +24,11 @@ function GeneralProviders() {
     { title: "Daddy Baby (KN95)", subtitle: "爹地宝贝" },
     { title: "Page (KN95)", subtitle: "佩吉" },
   ];
-  const listItems = items.map((item) => {
+  const listItems = items.map((item, idx) => {
     const bodyContent = `number of need:%0D%0Alocation of need:%0D%0Atargeted price:%0D%0A`;
     const hrefContent = `mailto:jay.lin@ppewholesale?subject=Query ${item.title}&body=${bodyContent}`;
     return (
-      <ListItem button component="a" href={hrefContent}>
+      <ListItem button component="a" href={hrefContent} key={idx}>
         <ListItemText
           primary={item.title}
           secondary={item.subtitle}

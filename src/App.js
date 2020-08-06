@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Home from "./components/home"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Gloves from "./components/vendors/gloves";
 import Top from "./components/common/top";
 import Order from "./components/order";

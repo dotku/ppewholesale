@@ -25,7 +25,7 @@ export default function Mask() {
       {OTGLots.map((item, idx) => 
         <ListItem key={idx}>
             <ListItemText secondary={item.sku}>
-              {item.name}
+              {`${item.brand ? item.brand : ""} ${item.name}`}
               {
                 item.ifNew && 
                 <Typography color="secondary" display="inline">【新】</Typography>

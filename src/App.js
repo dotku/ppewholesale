@@ -27,7 +27,7 @@ function App() {
             {/* <Route path="/catelog">
               <Catelog />
             </Route> */}
-            <Route path="/gloves" exact>
+            <Route path="/vendors/gloves" exact>
               <Gloves />
             </Route>
             <Route path="/mask" exact>

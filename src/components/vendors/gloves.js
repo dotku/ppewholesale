@@ -111,7 +111,7 @@ export default function Gloves() {
           <ZAxis dataKey="id" name="id" />
           <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />}/>
           <Legend />
-          <Scatter name="VGlove" data={data1} fillOpacity={0.5} fill={colors[getIdByName("VGlove") % colors.length]} />
+          <Scatter onClick={() => {console.log("Click")}} name="VGlove" data={data1} fillOpacity={0.5} fill={colors[getIdByName("VGlove") % colors.length]} />
           <Scatter name="Intco" data={data2} fillOpacity={0.5} fill={colors[getIdByName("Intco") % colors.length]} />
           <Scatter name="Cranberry" data={dataCranberry} fillOpacity={0.5} fill={colors[getIdByName("Cranberry") % colors.length]} />
         </ScatterChart>

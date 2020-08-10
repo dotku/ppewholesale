@@ -1,6 +1,5 @@
 import React from "react";
 import { List, ListItem, ListItemText, Container, Typography} from "@material-ui/core";
-import Gloves from "./gloves";
 
 function GeneralProviders() {
   const items = [

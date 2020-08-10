@@ -9,7 +9,7 @@ function Home() {
   return (
     <Container className="App">
       <Container style={{color: "white", padding: "40px", backgroundImage: "URL('https://cdn.ihsmarkit.com/www/blog/ra-global-business-527035084-post.jpg')"}}>
-        <Typography variant="h1" style={{backgroundColor: "rgba(0, 0, 0, 0.3)"}}>PPE Wholesale</Typography>
+        <Typography variant="h2" style={{backgroundColor: "rgba(0, 0, 0, 0.3)"}}>PPE Wholesale</Typography>
         <p style={{backgroundColor: "rgba(0, 0, 0, 0.3)", padding: "10px"}}>We provide varied PPE products and support global needs.</p>
       </Container>
       <Divider />

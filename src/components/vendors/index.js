@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ListItem, ListItemText } from "@material-ui/core";
+import { List, ListItem, ListItemText, Container, Typography} from "@material-ui/core";
 import Gloves from "./gloves";
 
 function GeneralProviders() {
@@ -40,9 +40,8 @@ function GeneralProviders() {
 }
 export default function Providers() {
   return (
-    <React.Fragment>
-      <div>
-        <Gloves />
+    <Container>
+      <Typography variant="h6">Providers</Typography>
         <p>### EUA (Emergency Use Authorizations) Channel</p>
         <a href="https://www.fda.gov/media/136663/download">
           https://www.fda.gov/media/136663/download
@@ -166,7 +165,6 @@ export default function Providers() {
         <p>### General</p>
         <p>** not in the Niosh or EUA listed</p>
         <GeneralProviders />
-      </div>
-    </React.Fragment>
+    </Container>
   );
 }

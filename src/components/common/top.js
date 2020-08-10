@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -42,10 +43,15 @@ export default function Top() {
   return (
     <AppBar position="fixed">
       <Toolbar>
-        <SupervisedUserCircleIcon className={classes.icon} />
-        <Typography variant="h6" color="inherit" noWrap>
-          PPE Wholesale &lt;3 US
-        </Typography>
+        <Container>
+        <SupervisedUserCircleIcon className={classes.icon} style={{ 
+          display: "inline-block",
+          verticalAlign: "middle",
+          marginTop: "-3px"}}/>
+          <Typography variant="h6" color="inherit" noWrap display="inline">
+            PPE Wholesale &lt;3 US
+          </Typography>
+        </Container>
       </Toolbar>
     </AppBar>
   )

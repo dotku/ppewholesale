@@ -7,6 +7,9 @@ import Top from "./components/common/top";
 import Order from "./components/order";
 import Footer from "./components/common/footer";
 import Mask from "./components/mask";
+import Glove from "./components/glove";
+import Partners from "./components/connections/partners";
+import Clients from "./components/connections/clients";
 
 function App() {
   // const body = `proudct:%0D%0Anumber in need:%0D%0Atargeted
@@ -18,8 +21,11 @@ function App() {
         <div className="App">
           <Top />
           <Switch>
-            <Route path="/" exact>
+            <Route exact path="/">
               <Home/>
+            </Route>
+            <Route path="/glove" exact>
+              <Glove/>
             </Route>
             <Route path="/home" exact>
               <Home/>
@@ -35,6 +41,16 @@ function App() {
             </Route>
             <Route path="/order" exact>
               <Order/>
+            </Route>
+            <Route exact path="/connections">
+              <Partners/>
+              <Clients/>
+            </Route>
+            <Route path="/connections/partners">
+              <Partners/>
+            </Route>
+            <Route path="/connections/clients">
+              <Clients/>
             </Route>
           </Switch>
           <Footer />

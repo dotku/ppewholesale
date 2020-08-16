@@ -52,3 +52,9 @@ Updated: June 11, 2020
 - Taidakang (KN95, N95) 泰达康
 - Daddy Baby (KN95) 爹地宝贝
 - Page (KN95) 佩吉
+
+### Enviroment
+
+- MySQL 5.6
+- React
+- PHP 7.4

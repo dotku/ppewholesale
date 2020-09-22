@@ -57,7 +57,7 @@ function App() {
             <Route path="/orders">
               <Orders />
             </Route>
-            <Route path="/sources" exact>
+            <Route path="/sources/warning" exact>
               <Sources />
             </Route>
           </Switch>

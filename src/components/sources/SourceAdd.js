@@ -1,4 +1,4 @@
-import { SentimentSatisfied } from "@material-ui/icons";
+import { TextField } from "@material-ui/core";
 import React, {useState}from "react";
 import {useDispatch} from "react-redux";
 import {addSource} from "../../actions";
@@ -9,7 +9,6 @@ export default function SourceAdd() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submited", e.target.value);
     dispatch(addSource(title));
     setTitle("");
   }
@@ -18,7 +17,7 @@ export default function SourceAdd() {
   }
   return <div>
     <form onSubmit={handleSubmit}>
-      <input value={title} onChange={handleChange}/>
+      <TextField value={title} onChange={handleChange} label="Add New Source" fullWidth/>
     </form>
   </div>
 }

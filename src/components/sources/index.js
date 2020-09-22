@@ -1,15 +1,13 @@
-import { Container } from "@material-ui/core";
+import { List, ListItem } from "@material-ui/core";
 import React from "react";
-import SourceAdd from "./SourceAdd";
-import SourceStat from "./SourceStat";
-import SourceList from "./SrouceList";
+import { Link } from "react-router-dom";
 
-export default function Sources(){
-  return <Container>
+export default function SourceIndex() {
+  return <div>
     <h3>Sources</h3>
-    <p>Beware of these companies are under scanner and under investigation.</p>
-    <SourceStat />
-    <SourceAdd />
-    <SourceList />
-  </Container>
+    <List>
+      <ListItem><Link to="./sources/safe">Safe</Link></ListItem>
+      <ListItem><Link to="./sources/warning">Warning</Link></ListItem>
+    </List>
+  </div>
 }

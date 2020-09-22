@@ -13,7 +13,6 @@ import { deleteSource } from "../../actions";
 export default function SourceList() {
   const sourceList = useSelector((state) => state.sources);
   const dispatch = useDispatch();
-  console.log(sourceList);
   return (
     <div>
       {sourceList.length ? (

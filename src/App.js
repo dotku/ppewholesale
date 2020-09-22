@@ -11,7 +11,9 @@ import Glove from "./components/glove";
 import Partners from "./components/connections/partners";
 import Clients from "./components/connections/clients";
 import Orders from "./components/orders";
-import Sources from "./components/sources";
+import Sources from "./components/sources/index";
+import SourcesWarning from "./components/sources/indexWarning";
+import SourceSafe from "./components/sources/indexSafe";
 
 function App() {
   // const body = `proudct:%0D%0Anumber in need:%0D%0Atargeted
@@ -57,8 +59,14 @@ function App() {
             <Route path="/orders">
               <Orders />
             </Route>
-            <Route path="/sources/warning" exact>
+            <Route path="/sources" exact>
               <Sources />
+            </Route>
+            <Route path="/sources/safe" exact>
+              <SourceSafe />
+            </Route>
+            <Route path="/sources/warning" exact>
+              <SourcesWarning />
             </Route>
           </Switch>
           <Footer />

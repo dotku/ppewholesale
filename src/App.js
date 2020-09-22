@@ -10,6 +10,8 @@ import Mask from "./components/mask";
 import Glove from "./components/glove";
 import Partners from "./components/connections/partners";
 import Clients from "./components/connections/clients";
+import Orders from "./components/orders";
+import Sources from "./components/sources";
 
 function App() {
   // const body = `proudct:%0D%0Anumber in need:%0D%0Atargeted
@@ -51,6 +53,12 @@ function App() {
             </Route>
             <Route path="/connections/clients">
               <Clients/>
+            </Route>
+            <Route path="/orders">
+              <Orders />
+            </Route>
+            <Route path="/sources" exact>
+              <Sources />
             </Route>
           </Switch>
           <Footer />

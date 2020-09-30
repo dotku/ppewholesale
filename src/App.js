@@ -14,6 +14,9 @@ import Orders from "./components/orders";
 import Sources from "./components/sources/index";
 import SourcesWarning from "./components/sources/indexWarning";
 import SourceSafe from "./components/sources/indexSafe";
+import ProfileIndex from "./components/profile";
+import Paperbase from "./components/paperbase/Paperbase";
+import Profile from "./components/instapaper/pages/instapaper/Profile";
 
 function App() {
   // const body = `proudct:%0D%0Anumber in need:%0D%0Atargeted
@@ -34,18 +37,30 @@ function App() {
             <Route path="/home" exact>
               <Home/>
             </Route>
+            <Route path="/instapaper" exact>
+              <Profile />
+            </Route>
             {/* <Route path="/catelog">
               <Catelog />
             </Route> */}
-            <Route path="/price/gloves" exact>
-              <Gloves />
-            </Route>
+            
             <Route path="/mask" exact>
               <Mask />
             </Route>
             <Route path="/order" exact>
               <Order/>
             </Route>
+            <Route path="/paperbase" exact>
+              <Paperbase />
+            </Route>
+            <Route path="/price/gloves" exact>
+              <Gloves />
+            </Route>
+            <Route path="/profiles/:name" exact>
+              <ProfileIndex />
+            </Route>
+            
+            
             <Route exact path="/connections">
               <Partners/>
               <Clients/>

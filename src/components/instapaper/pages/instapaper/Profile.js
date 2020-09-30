@@ -87,11 +87,6 @@ function ProfilePage() {
                       <b>260</b> Following
                     </Typography>
                   </Grid>
-                  <Grid item>
-                    <Typography variant="subtitle1">
-                      <b>biao qing</b>
-                    </Typography>
-                  </Grid>
                 </Grid>
               </Box>
               <Typography variant="subtitle1" bold>

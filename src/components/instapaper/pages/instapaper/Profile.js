@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import atoms from '../../components/atoms';
 import molecules from '../../components/molecules';
-import Header from '../../components/instapaper/Header';
 import theme from '../../theme/instapaper/theme';
 import withTheme from './withTheme';
 import Box from '@material-ui/core/Box';
@@ -71,17 +70,22 @@ function ProfilePage() {
                 <Grid container spacing={5}>
                   <Grid item>
                     <Typography variant="subtitle1">
-                      <b>132</b> posts
+                      <b>132</b> Products
                     </Typography>
                   </Grid>
                   <Grid item>
                     <Typography variant="subtitle1">
-                      <b>325</b> followers
+                      <b>325</b> Followers
                     </Typography>
                   </Grid>
                   <Grid item>
                     <Typography variant="subtitle1">
-                      <b>260</b> following
+                      <b>260</b> Following
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="subtitle1">
+                      <b>biao qing</b>
                     </Typography>
                   </Grid>
                 </Grid>

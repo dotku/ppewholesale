@@ -41,11 +41,11 @@ function ProfilePage() {
       <Box component="main" maxWidth={935} margin="auto" padding="140px 20px 0">
         <Box mb="44px">
           <Grid container>
-            <Grid item xs={4}>
+            <Grid item xs={6} md={4}>
               <Avatar
                 ultraLarge={upSm}
                 medium={!upSm}
-                style={{ margin: 'auto' }}
+                style={{ margin: "auto" }}
                 alt="My profile"
                 src="https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg"
               />
@@ -56,7 +56,11 @@ function ProfilePage() {
                   <Typography component="h1" variant="h4" lightWeight>
                     siriwatknp
                   </Typography>
-                  <Button className={classes.editButton} variant="outlined" fullWidth={!upSm}>
+                  <Button
+                    className={classes.editButton}
+                    variant="outlined"
+                    fullWidth={!upSm}
+                  >
                     Edit Profile
                   </Button>
                   <div className={classes.settings}>
@@ -93,7 +97,9 @@ function ProfilePage() {
               <Typography variant="subtitle1" bold>
                 Siriwat Kunaporn
               </Typography>
-              <Typography variant="subtitle1">Bangkok Christian College</Typography>
+              <Typography variant="subtitle1">
+                Bangkok Christian College
+              </Typography>
               <Typography variant="subtitle1">CU intania 96.</Typography>
             </Grid>
           </Grid>
@@ -111,67 +117,67 @@ function ProfilePage() {
           <Tab label="Tagged" />
         </Tabs>
         <Grid container spacing={4}>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/1"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/2"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/3"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/4"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/5"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/6"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/7"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/8"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <img
               alt="post"
-              style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              style={{ width: "100%" }}
+              src="http://lorempixel.com/500/500/city/9"
             />
           </Grid>
         </Grid>

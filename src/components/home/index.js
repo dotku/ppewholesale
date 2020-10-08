@@ -14,6 +14,7 @@ const data = [
   {
     message: "thermo gun i know 4000 available in ny price is 51 rmb",
     type: "sale",
+    availiblity: "OTG",
     unit: 4000,
     price: 7.5,
   },
@@ -29,6 +30,20 @@ const data = [
     unit: 30000000,
     price: 19,
   },
+  {
+    message: "Looking for 1K Nitrile Exam Gloves",
+    type: "buy",
+    availiblity: "Production",
+    unit: 1000,
+    price: 7.5,
+  },
+  {
+    message: "Looking for 100M Cranberry Nitrile Exam Gloves",
+    type: "buy",
+    status: "closed",
+    unit: 100000000,
+    price: 21,
+  },
 ];
 function NumberFormat({ value }) {
   return new Intl.NumberFormat("en-US").format(value);
@@ -39,13 +54,20 @@ function CurrencyFormat({ value }) {
     currency: "USD",
   }).format(value);
 }
-function ContentItem({ message, type, unit, price }) {
+function ContentItem({ message, type, unit, price, status, availiblity}) {
   return (
-    <Card variant="outlined" style={{ margin: "20px 0px" }}>
+    <Card variant="outlined" style={{ marginTop: "20px" }}>
       <CardContent>
-        <div style={{textAlign: "right"}}>{type === "sale" ? <Storefront /> : <Search />}</div>
+        <div style={{ textAlign: "right" }}>
+          {type === "sale" ? <Storefront /> : <Search />}
+        </div>
         <Typography>{message}</Typography>
         <Divider />
+        {availiblity && (
+          <Typography>
+            Availiblity: {availiblity}
+          </Typography>
+        )}
         {unit && (
           <Typography>
             Unit: <NumberFormat value={unit} />
@@ -63,13 +85,21 @@ function ContentItem({ message, type, unit, price }) {
         )}
       </CardContent>
       <CardActions style={{ float: "right" }}>
-        <Button size="small" href="mailto:jay.lin@dkwholesale.us">
-          {type === "sale" ? (
-            <span message="I want to buy">Buy</span>
-          ) : (
-            <span message="I can sell you">Sell</span>
-          )}
-        </Button>
+        {status !== "closed" ? (
+          <Button size="small" href="mailto:jay.lin@dkwholesale.us">
+            {type === "sale" ? (
+              <span message="I want to buy">Buy</span>
+            ) : (
+              <span message="I can sell you">Sell</span>
+            )}
+          </Button>
+        ) : (
+          <Button disabled>
+            <span message="I can sell you">
+              <s>Closed</s>
+            </span>
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
@@ -113,26 +143,26 @@ export default function Home() {
             <ContentItem key={idx} {...item} />
           ))}
         </Grid>
-        <Grid md={4} item>
-          <Card variant="outlined" style={{ margin: "20px 10px" }}>
+        <Grid md={4} xs={12} item>
+          <Card variant="outlined" style={{ marginTop: "20px" }}>
             <CardContent>
               <h3>All</h3>
               <Typography>All Listing: {data.length}</Typography>
 
               <h3>Sale</h3>
               <Typography>
-                Total Listing: {data.filter((item) => item.type === "sale").length}
+                Total Listing:{" "}
+                {data.filter((item) => item.type === "sale").length}
               </Typography>
               <Typography>
                 Total Value: <CurrencyFormat value={totalSales.totalValue} />
               </Typography>
               <h3>Buy</h3>
               <Typography>
-                  Total Listing:{" "}
-                  {data.filter((item) => item.type !== "sale").length}
-                </Typography>
+                Total Listing:{" "}
+                {data.filter((item) => item.type !== "sale").length}
+              </Typography>
               <Typography>
-                
                 Total Value: <CurrencyFormat value={totalBuys.totalValue} />
               </Typography>
             </CardContent>

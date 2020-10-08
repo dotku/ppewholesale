@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import { makeStyles } from "@material-ui/core/styles";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { Container } from '@material-ui/core';
+import { Container, Link } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -44,15 +44,21 @@ export default function Top() {
     <AppBar position="fixed">
       <Toolbar>
         <Container>
-        <SupervisedUserCircleIcon className={classes.icon} style={{ 
-          display: "inline-block",
-          verticalAlign: "middle",
-          marginTop: "-3px"}}/>
+          <Link href="#" color="inherit" style={{textDecoration: "none"}}>
+            <SupervisedUserCircleIcon
+              className={classes.icon}
+              style={{
+                display: "inline-block",
+                verticalAlign: "middle",
+                marginTop: "-3px",
+              }}
+            />
           <Typography variant="h6" color="inherit" noWrap display="inline">
             PPE Wholesale &lt;3 US
           </Typography>
+          </Link>
         </Container>
       </Toolbar>
     </AppBar>
-  )
+  );
 }

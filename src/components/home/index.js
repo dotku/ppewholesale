@@ -54,9 +54,9 @@ function CurrencyFormat({ value }) {
     currency: "USD",
   }).format(value);
 }
-function ContentItem({ message, type, unit, price, status, availiblity }) {
+function ContentItem({ message, type, unit, price, status, availiblity, idx }) {
   return (
-    <Card variant="outlined" style={{ marginTop: "20px" }}>
+    <Card variant="outlined" style={{ marginTop: idx ? "20px" : 0 }}>
       <CardContent>
         <div style={{ textAlign: "right" }}>
           {type === "sale" ? <Storefront /> : <Search />}
@@ -136,11 +136,11 @@ export default function Home() {
       <Grid container spacing={2}>
         <Grid md={8} item>
           {data.map((item, idx) => (
-            <ContentItem key={idx} {...item} />
+            <ContentItem key={idx} {...item} idx={idx} />
           ))}
         </Grid>
         <Grid md={4} xs={12} item>
-          <Card variant="outlined" style={{ marginTop: "20px" }}>
+          <Card variant="outlined">
             <CardContent>
               <h3>All</h3>
               <Typography>All Listing: {data.length}</Typography>

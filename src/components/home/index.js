@@ -54,7 +54,7 @@ function CurrencyFormat({ value }) {
     currency: "USD",
   }).format(value);
 }
-function ContentItem({ message, type, unit, price, status, availiblity}) {
+function ContentItem({ message, type, unit, price, status, availiblity }) {
   return (
     <Card variant="outlined" style={{ marginTop: "20px" }}>
       <CardContent>
@@ -63,11 +63,7 @@ function ContentItem({ message, type, unit, price, status, availiblity}) {
         </div>
         <Typography>{message}</Typography>
         <Divider />
-        {availiblity && (
-          <Typography>
-            Availiblity: {availiblity}
-          </Typography>
-        )}
+        {availiblity && <Typography>Availiblity: {availiblity}</Typography>}
         {unit && (
           <Typography>
             Unit: <NumberFormat value={unit} />
@@ -167,6 +163,30 @@ export default function Home() {
               </Typography>
             </CardContent>
           </Card>
+          <div style={{ margin: "16px 10px 0 0" }}>
+            <Typography viriant="h4" style={{ color: "gray" }}>
+              Sponsors
+            </Typography>
+            <ul>
+              <li>
+                <Typography>ZY International Trade Inc</Typography>
+              </li>
+              <li>
+                <Typography>US Chitu Entertainment Media</Typography>
+              </li>
+              <li>
+                <Typography>Skynet LLC</Typography>
+              </li>
+              <li>
+                <Typography>Mulan LLC</Typography>
+              </li>
+            </ul>
+            <div style={{ textAlign: "right" }}>
+              <Button href="https://paypal.me/dotku" disableFocusRipple>
+                <small>Become a sponsor</small>
+              </Button>
+            </div>
+          </div>
         </Grid>
       </Grid>
     </Container>

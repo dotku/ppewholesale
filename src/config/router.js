@@ -12,8 +12,9 @@ import ProfileIndex from "../components/profile";
 import Paperbase from "../components/paperbase/Paperbase";
 import Profile from "../components/instapaper/pages/instapaper/Profile";
 import Order from "../components/order";
-import Home from "../components/home";
+import Home from "../components/about";
 import Gloves from "../components/vendors/gloves";
+import Payment from "../components/payment";
 
 const routers = [
   { path: "/", component: Home, exact: true },
@@ -23,6 +24,7 @@ const routers = [
   { path: "/order", component: Order, exact: true },
   { path: "/instapaper", component: Profile, exact: true },
   { path: "/paperbase", component: Paperbase, exact: true },
+  { path: "/payment/:value", component: Payment, exact: true },
   { path: "/price/gloves", component: Gloves, exact: true },
   { path: "/profiles/:name", component: ProfileIndex, exact: true },
   { path: "/connections", components: [Partners, Clients], exact: true },

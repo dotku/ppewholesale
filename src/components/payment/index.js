@@ -1,45 +1,36 @@
 import { Container } from "@material-ui/core";
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ReactDOM from "react-dom";
 
-export default function Payment({value = 10}) {
-  function initPayPalButton() {
-    window.paypal.Buttons({
-      style: {
-        shape: 'rect',
-        color: 'gold',
-        layout: 'vertical',
-        label: 'pay',
-        
-      },
+
+export default function Payment({value: valueDefault = 10}) {
+  let {value} = useParams();
+  let PayPalButton = window.paypal.Buttons.driver('react', { React, ReactDOM });
+
+  const createOrder = (data, actions) => {
+    return actions.order.create({
+        purchase_units: [{
+            amount: {
+                value
+            }
+        }]
+    });
+}
+
+const onApprove  = (data, actions) =>  {
+    return actions.order.capture();
+}
   
-      createOrder: function(data, actions) {
-        return actions.order.create({
-          purchase_units: [{"amount":{"currency_code":"USD","value": value}}]
-        });
-      },
-  
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          alert('Transaction completed by ' + details.payer.name.given_name + '!');
-        });
-      },
-  
-      onError: function(err) {
-        console.log(err);
-      }
-    }).render('#paypal-button-container');
-  }
   useEffect(() => {
-    initPayPalButton();
-  }, [])
-  
+    console.log(value);
+
+  }, [value])
   return (
     <Container className="main">
-    <div id="smart-button-container">
-      <div style={{textAlign: "center"}}>
-        <div id="paypal-button-container"></div>
-      </div>
-    </div>
+      <PayPalButton 
+      createOrder={ (data, actions) => createOrder(data, actions) }
+      onApprove={ (data, actions) => onApprove(data, actions) }/>
     </Container>
   );
 }

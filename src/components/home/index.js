@@ -182,7 +182,7 @@ export default function Home() {
               </li>
             </ul>
             <div style={{ textAlign: "right" }}>
-              <Button href="https://paypal.me/dotku" disableFocusRipple>
+              <Button href="#payment/5" disableFocusRipple>
                 <small>Become a sponsor</small>
               </Button>
             </div>

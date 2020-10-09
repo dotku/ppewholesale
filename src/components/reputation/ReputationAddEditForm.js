@@ -18,6 +18,7 @@ export default function ReputationAddEditForm() {
       <TextField label="name" required />
       <TextField label="whatsapp" />
       <TextField label="wechat" />
+      <TextField label="region" />
     </form>
   );
 }

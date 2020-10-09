@@ -1,10 +1,4 @@
-import {
-  CardContent,
-  Card,
-  Typography,
-  CardActions,
-  Button,
-} from "@material-ui/core";
+import { CardContent, Card, Typography } from "@material-ui/core";
 import React from "react";
 
 export default function ReputationContentItem({ name, region, level }) {

@@ -4,11 +4,11 @@ import {
   Container,
   Divider,
   Grid,
+  TextField,
   Typography,
 } from "@material-ui/core";
-
 import Alert from "@material-ui/lab/Alert";
-import React from "react";
+import React, { useState } from "react";
 import ReputationAddEditForm from "./ReputationAddEditForm";
 import ReputationContentItem from "./ReputationContentItem";
 const data = [
@@ -137,6 +137,8 @@ function CountByRegion({ rows = [] }) {
   ));
 }
 export default function ReputationIndex() {
+  const [keyword, setKeyword] = useState("");
+
   return (
     <Container className="main">
       <Alert severity="warning">
@@ -145,9 +147,18 @@ export default function ReputationIndex() {
       </Alert>
       <Grid container spacing={2} style={{ marginTop: "8px" }}>
         <Grid item md={8}>
-          {data.map((item, idx) => (
-            <ReputationContentItem {...item} key={idx} />
-          ))}
+          <TextField
+            label="search"
+            style={{ marginBottom: "20px" }}
+            onKeyUp={(e) => {
+              setKeyword(e.target.value || "");
+            }}
+          />
+          {data
+            .filter((item) => item.name.includes(keyword))
+            .map((item, idx) => (
+              <ReputationContentItem {...item} key={idx} />
+            ))}
         </Grid>
         <Grid item md={4}>
           <Card variant="outlined">

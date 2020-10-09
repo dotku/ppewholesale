@@ -1,12 +1,13 @@
-import { Container, Grid, Input, TextField } from "@material-ui/core";
+import { Container, TextField } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactDOM from "react-dom";
+import { CurrencyFormat } from "../common/formats";
 
 export default function Payment({ value: valueDefault = 10 }) {
   let { value } = useParams();
   let PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
-  const [money, setMoney] = useState(value);
+  const [money] = useState(value);
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -33,7 +34,7 @@ export default function Payment({ value: valueDefault = 10 }) {
         <div style={{ marginTop: "100px" }}>
           <div style={{ marginBottom: "10px" }}>
             <TextField
-              value={money}
+              value={CurrencyFormat({ value: money, signDisplay: "never" })}
               autoFocus
               label="Amount"
               variant="outlined"

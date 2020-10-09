@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import React, { useState } from "react";
+import Sponsors from "../sponsors";
 import ReputationAddEditForm from "./ReputationAddEditForm";
 import ReputationContentItem from "./ReputationContentItem";
 const data = [
@@ -174,6 +175,7 @@ export default function ReputationIndex() {
               <CountByRegion rows={data} />
             </CardContent>
           </Card>
+          <Sponsors />
         </Grid>
       </Grid>
     </Container>

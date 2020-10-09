@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -12,7 +13,7 @@
     "axios": "^0.19.2",
     "d3-scale": "^3.2.1",
     "d3-scale-chromatic": "^1.5.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.1",
     "paypal-checkout-components": "^4.1.35",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

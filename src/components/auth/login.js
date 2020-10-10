@@ -11,7 +11,10 @@ export default function Login({ uiConfigNew = {} }) {
       signInSuccessUrl: "#/login",
       signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        {
+          provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          // scopes: ["https://www.googleapis.com/auth/contacts.readonly"],
+        },
         // firebase.auth.FacebookAuthProvider.PROVIDER_ID
       ],
     },

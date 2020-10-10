@@ -100,6 +100,9 @@ function ProfilePage() {
                   </Grid>
                 </Grid>
               </Box>
+              <Button variant="outlined" href="#/logout">
+                Logout
+              </Button>
               {/* <Typography variant="subtitle1" bold>
                 Siriwat Kunaporn
               </Typography>

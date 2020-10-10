@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function UserAvatar({ user, redirect = "/" }) {
   const classes = useStyles();
   return user ? (
-    <IconButton href={`#profile/${user ? user.uid : ""}`}>
+    <IconButton href={`#profile`}>
       <Avatar className={classes.small} src={user ? user.photoURL : ""}>
         A
       </Avatar>

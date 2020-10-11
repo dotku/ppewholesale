@@ -1,6 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, IconButton, Avatar } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import firebase from "firebase/app";
+import "firebase/auth";
 const useStyles = makeStyles((theme) => ({
   button: {
     color: "white",
@@ -44,8 +48,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UserAvatar({ user, redirect = "/" }) {
+export default function UserAvatar({ redirect = "/", style }) {
+  const user = useSelector(({ auth }) => auth);
   const classes = useStyles();
+
   return user ? (
     <IconButton href={`#profile`}>
       <Avatar className={classes.small} src={user ? user.photoURL : ""}>
@@ -53,7 +59,11 @@ export default function UserAvatar({ user, redirect = "/" }) {
       </Avatar>
     </IconButton>
   ) : (
-    <Button className={classes.button} href={`?redirect=${redirect}#/login`}>
+    <Button
+      className={classes.button}
+      href={`?redirect=${redirect}#/login`}
+      style={style}
+    >
       Sign In
     </Button>
   );

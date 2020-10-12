@@ -19,9 +19,11 @@ import ReputationIndex from "../components/reputation";
 import Auth from "../components/lab/auth";
 import Login from "../components/auth/login";
 import Logout from "../components/auth/logout";
+import Admin from "../components/admin";
 
 const routers = [
   { path: "/", component: Home, exact: true },
+  { path: "/admin", component: Admin },
   { path: "/connections", components: [Partners, Clients], exact: true },
   { path: "/connections/clients", component: Clients, exact: true },
   { path: "/connections/partners", component: Partners, exact: true },

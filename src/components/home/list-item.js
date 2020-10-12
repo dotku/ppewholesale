@@ -12,10 +12,8 @@ import {
   Avatar,
 } from "@material-ui/core";
 import moment from "moment";
-import { useSelector } from "react-redux";
-import { VisibilityOff as Hide, Search, Storefront } from "@material-ui/icons";
+import { Search, Storefront } from "@material-ui/icons";
 import { NumberFormat, CurrencyFormat } from "../common/formats";
-import { blue, red } from "@material-ui/core/colors";
 export default function ContentItem({
   message,
   type,

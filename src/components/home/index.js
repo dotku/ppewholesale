@@ -1,25 +1,23 @@
 import {
-  Button,
-  Card,
-  CardContent,
+  // Button,
+  // Card,
+  // CardContent,
   Container,
   Grid,
-  Typography,
+  // Typography,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import ListAdd from "./list-add";
 import ContentItem from "./list-item";
 import Sponsors from "../sponsors";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import HomeStat from "./stat";
-import User from "../user";
 
 export default function Home() {
   const [data, setData] = useState(useSelector(({ posts }) => posts));
   const db = firebase.firestore();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     // console.log("useEffect");

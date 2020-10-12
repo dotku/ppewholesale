@@ -10,7 +10,7 @@ import SourcesWarning from "../components/sources/indexWarning";
 import SourceSafe from "../components/sources/indexSafe";
 import Profile from "../components/profile";
 import Paperbase from "../components/paperbase/Paperbase";
-import ProfileInstapaper from "../components/instapaper/pages/instapaper/Profile";
+// import ProfileInstapaper from "../components/instapaper/pages/instapaper/Profile";
 import Order from "../components/order";
 import Home from "../components/home";
 import Gloves from "../components/vendors/gloves";

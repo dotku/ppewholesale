@@ -7,7 +7,7 @@ import {
   // Typography,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import ListAdd from "./list-add";
+import ListAdd from "./listAdd";
 import ContentItem from "./list-item";
 import Sponsors from "../sponsors";
 import { useSelector } from "react-redux";

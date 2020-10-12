@@ -112,6 +112,7 @@ export default function ListAdd({ onSubmit }) {
     formData["_createTime"] = Math.floor(Date.now() / 1000);
     formData["_updateTime"] = Math.floor(Date.now() / 1000);
     onSubmit(formData);
+    setFormData({ email });
   };
   // console.log("before render email", email, formData);
   return (

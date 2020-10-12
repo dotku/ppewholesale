@@ -73,9 +73,11 @@ export default function Home() {
     <Container className="main">
       <Grid container spacing={2}>
         <Grid md={8} xs={12} item>
-          {data.map((item, idx) => (
-            <ContentItem key={idx} {...item} idx={idx} />
-          ))}
+          {data
+            ? data.map((item, idx) => (
+                <ContentItem key={idx} {...item} idx={idx} />
+              ))
+            : "Loading..."}
         </Grid>
         <Grid md={4} xs={12} item>
           <ListAdd onSubmit={handleSubmit} />

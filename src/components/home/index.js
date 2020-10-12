@@ -21,13 +21,13 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("useEffect");
+    // console.log("useEffect");
     const db = firebase.firestore();
     const getPosts = async () => {
       const docs = (await db.collection("posts").get()).docs;
       const posts = docs.map(async (doc) => {
         let post = await doc.data();
-        console.log("doc", doc);
+        // console.log("doc", doc);
         // post = Object.assign(post, {
         //   _createTime: doc._createTime,
         //   _updateTime: doc._updateTime,
@@ -37,12 +37,9 @@ export default function Home() {
         return post;
       });
       const result = await Promise.all(posts);
-      console.log("result", result);
+      // console.log("result", result);
 
-      console.log(
-        "dispatch home index",
-        dispatch({ type: "FETCH_POSTS", payload: result })
-      );
+      // console.log( "dispatch home index", dispatch({ type: "FETCH_POSTS", payload: result }));
       setData(result);
     };
     setTimeout(() => {
@@ -50,9 +47,9 @@ export default function Home() {
     }, 1000);
   }, []);
   const handleSubmit = (formData) => {
-    console.log(formData);
+    // console.log(formData);
     data.unshift(formData);
-    console.log(data);
+    // console.log(data);
     setData([...data]);
   };
   return (

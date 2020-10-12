@@ -27,8 +27,8 @@ app.get("/users/:keywords", ({ query, params }, res) => {
         .then((user) => {
           res.send(user);
         })
-        .catch(function (error) {
-          res.send(404, error);
+        .catch((error) => {
+          res.send(error);
         });
       break;
     case "uid":
@@ -38,8 +38,8 @@ app.get("/users/:keywords", ({ query, params }, res) => {
         .then((user) => {
           res.send(user);
         })
-        .catch(function (error) {
-          res.send(404, error);
+        .catch((error) => {
+          res.send(error);
         });
       break;
     default:

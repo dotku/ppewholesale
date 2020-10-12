@@ -33,7 +33,6 @@ const useStyles = makeStyles({
 function ProfilePage() {
   const user = useSelector((state) => state.auth);
   console.log("profilePage", user);
-  const classes = useStyles();
   const upSm = useMediaQuery(theme.breakpoints.up("sm"), {
     defaultMatches: true,
   });

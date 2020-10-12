@@ -1,10 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, IconButton, Avatar } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import firebase from "firebase/app";
-import "firebase/auth";
+import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   button: {
     color: "white",

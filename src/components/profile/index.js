@@ -2,8 +2,6 @@ import React from "react";
 import { Container } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import atoms from "../instapaper/components/atoms";
@@ -11,11 +9,10 @@ import theme from "../instapaper/theme/instapaper/theme";
 import withTheme from "../instapaper/pages/instapaper/withTheme";
 import Box from "@material-ui/core/Box";
 import { useSelector } from "react-redux";
-import { StyledFirebaseAuth } from "react-firebaseui";
 import ReactJson from "react-json-view";
 import { getNoCircleStringify } from "../common/utility";
 
-const { Avatar, Icon, Typography } = atoms;
+const { Avatar, Typography } = atoms;
 
 const useStyles = makeStyles({
   editButton: {
@@ -36,7 +33,6 @@ const useStyles = makeStyles({
 function ProfilePage() {
   const user = useSelector((state) => state.auth);
   console.log("profilePage", user);
-  const [tabIndex, setTabIndex] = React.useState(0);
   const classes = useStyles();
   const upSm = useMediaQuery(theme.breakpoints.up("sm"), {
     defaultMatches: true,

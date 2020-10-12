@@ -8,14 +8,17 @@ import Orders from "../components/orders";
 import Sources from "../components/sources/index";
 import SourcesWarning from "../components/sources/indexWarning";
 import SourceSafe from "../components/sources/indexSafe";
-import ProfileIndex from "../components/profile";
+import Profile from "../components/profile";
 import Paperbase from "../components/paperbase/Paperbase";
-import Profile from "../components/instapaper/pages/instapaper/Profile";
+import ProfileInstapaper from "../components/instapaper/pages/instapaper/Profile";
 import Order from "../components/order";
 import Home from "../components/home";
 import Gloves from "../components/vendors/gloves";
 import Payment from "../components/payment";
 import ReputationIndex from "../components/reputation";
+import Auth from "../components/lab/auth";
+import Login from "../components/auth/login";
+import Logout from "../components/auth/logout";
 
 const routers = [
   { path: "/", component: Home, exact: true },
@@ -25,13 +28,16 @@ const routers = [
   { path: "/glove", component: Glove, exact: true },
   { path: "/home", component: Home, exact: true },
   { path: "/instapaper", component: Profile, exact: true },
+  { path: "/lab/auth", component: Auth },
+  { path: "/login", component: Login },
+  { path: "/logout", component: Logout },
   { path: "/mask", component: Mask, exact: true },
   { path: "/order", component: Order, exact: true },
   { path: "/order", component: Orders, exact: true },
   { path: "/paperbase", component: Paperbase, exact: true },
   { path: "/payment/:value", component: Payment, exact: true },
   { path: "/price/gloves", component: Gloves, exact: true },
-  { path: "/profiles/:name", component: ProfileIndex, exact: true },
+  { path: "/profile", component: Profile, exact: true },
   { path: "/reputation", component: ReputationIndex },
   { path: "/sources", component: Sources, exact: true },
   { path: "/sources/safe", component: SourceSafe, exact: true },
@@ -53,7 +59,12 @@ export default function RouterIndex() {
 // A special wrapper for <Route> that knows how to
 // handle "sub"-routes by passing them in a `routes`
 // prop to the component it renders.
-function RouteWithSubRoutes({ path, exact, component: Component, components }) {
+function RouteWithSubRoutes({
+  path,
+  exact = true,
+  component: Component,
+  components,
+}) {
   // console.log(component);
   return (
     <Route path={path} exact={exact}>

@@ -13,6 +13,7 @@ import Box from "@material-ui/core/Box";
 import { useSelector } from "react-redux";
 import { StyledFirebaseAuth } from "react-firebaseui";
 import ReactJson from "react-json-view";
+import { getNoCircleStringify } from "../common/utility";
 
 const { Avatar, Icon, Typography } = atoms;
 
@@ -116,7 +117,7 @@ function ProfilePage() {
         <Box>
           <ReactJson
             style={{ overflow: "auto" }}
-            src={JSON.parse(JSON.stringify(user))}
+            src={JSON.parse(getNoCircleStringify(user))}
           />
         </Box>
       </Box>

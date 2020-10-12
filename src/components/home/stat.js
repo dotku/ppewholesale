@@ -5,6 +5,9 @@ import { CurrencyFormat } from "../common/formats";
 
 export default function HomeStat() {
   const data = useSelector(({ posts }) => posts);
+  if (!data) {
+    return <div>Loading...</div>;
+  }
   let totalSales = data.reduce(
     (prev, curr) => {
       if (curr.price && curr.unit && curr.type === "sale") {

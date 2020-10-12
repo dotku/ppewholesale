@@ -1,25 +1,26 @@
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import React from "react";
-import Mask from "../components/mask";
-import Glove from "../components/glove";
-import Partners from "../components/connections/partners";
-import Clients from "../components/connections/clients";
-import Orders from "../components/orders";
-import Sources from "../components/sources/index";
-import SourcesWarning from "../components/sources/indexWarning";
-import SourceSafe from "../components/sources/indexSafe";
-import Profile from "../components/profile";
-import Paperbase from "../components/paperbase/Paperbase";
 // import ProfileInstapaper from "../components/instapaper/pages/instapaper/Profile";
-import Order from "../components/order";
-import Home from "../components/home";
-import Gloves from "../components/vendors/gloves";
-import Payment from "../components/payment";
-import ReputationIndex from "../components/reputation";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import Admin from "../components/admin";
 import Auth from "../components/lab/auth";
+import Clients from "../components/connections/clients";
+import Glove from "../components/glove";
+import Gloves from "../components/vendors/gloves";
+import Home from "../components/home";
 import Login from "../components/auth/login";
 import Logout from "../components/auth/logout";
-import Admin from "../components/admin";
+import LOI from "../components/loi";
+import Mask from "../components/mask";
+import Order from "../components/order";
+import Orders from "../components/orders";
+import Paperbase from "../components/paperbase/Paperbase";
+import Partners from "../components/connections/partners";
+import Payment from "../components/payment";
+import Profile from "../components/profile";
+import React from "react";
+import ReputationIndex from "../components/reputation";
+import Sources from "../components/sources/index";
+import SourceSafe from "../components/sources/indexSafe";
+import SourcesWarning from "../components/sources/indexWarning";
 
 const routers = [
   { path: "/", component: Home, exact: true },
@@ -33,6 +34,7 @@ const routers = [
   { path: "/lab/auth", component: Auth },
   { path: "/login", component: Login },
   { path: "/logout", component: Logout },
+  { path: "/loi", component: LOI },
   { path: "/mask", component: Mask, exact: true },
   { path: "/order", component: Order, exact: true },
   { path: "/order", component: Orders, exact: true },

@@ -52,7 +52,7 @@ export default function Footer() {
   return (
     <React.Fragment>
       {/* Footer */}
-      <footer className={classes.footer}>
+      <footer className={[classes.footer, "no-print"].join(" ")}>
         {/* <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography> */}

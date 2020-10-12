@@ -1,12 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Container,
-  Link,
-  Avatar,
-  Grid,
-  Typography,
-  IconButton,
-} from "@material-ui/core";
+import { Container, Link, Grid, Typography } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import LoginDialog from "./LoginDialog";
 import React, { useState } from "react";
@@ -63,7 +56,7 @@ export default function Top() {
     setDialogOpen(false);
   };
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" className="no-print">
       <Toolbar>
         <Container>
           <Grid container>

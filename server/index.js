@@ -2,8 +2,11 @@ require("dotenv").config();
 
 const admin = require("firebase-admin");
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 3030;
+
+app.use(cors);
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),

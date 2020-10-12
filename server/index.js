@@ -1,36 +1,51 @@
 require("dotenv").config();
 
 const admin = require("firebase-admin");
+const express = require("express");
+const app = express();
+const port = 3030;
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
   databaseURL: "https://ppewholesale-27c61.firebaseio.com",
 });
 
-admin
-  .auth()
-  .getUsers([
-    { uid: "uid1" },
-    { email: "user2@example.com" },
-    { phoneNumber: "+15555550003" },
-    { providerId: "google.com", providerUid: "google_uid4" },
-  ])
-  .then(function (getUsersResult) {
-    console.log("Successfully fetched user data:");
-    getUsersResult.users.forEach((userRecord) => {
-      console.log(userRecord);
-    });
+app.get("/", (req, res) => {
+  res.send("hello world!");
+});
 
-    if (getUsersResult.notFound.length) {
-      console.log(
-        "Unable to find users corresponding to these identifiers:",
-        getUsersResult.notFound
-      );
-      getUsersResult.notFound.forEach((userIdentifier) => {
-        console.log(userIdentifier);
+app.get("/users/:keywords", ({ query, params }, res) => {
+  console.log("users", query);
+  switch (query.by) {
+    case "email":
+      admin
+        .auth()
+        .getUserByEmail(params.keywords)
+        .then((user) => {
+          res.send(user);
+        })
+        .catch(function (error) {
+          res.send(404, error);
+        });
+      break;
+    case "uid":
+      admin
+        .auth()
+        .getUser(params.keywords)
+        .then((user) => {
+          res.send(user);
+        })
+        .catch(function (error) {
+          res.send(404, error);
+        });
+      break;
+    default:
+      res.send(404, {
+        error: "missing options",
       });
-    }
-  })
-  .catch(function (error) {
-    console.log("Error fetching user data:", error);
-  });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});

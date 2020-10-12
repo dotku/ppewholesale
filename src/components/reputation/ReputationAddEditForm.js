@@ -15,10 +15,10 @@ export default function ReputationAddEditForm() {
   const classes = useStyles();
   return (
     <form className={classes.root}>
-      <TextField label="name" required />
-      <TextField label="whatsapp" />
-      <TextField label="wechat" />
-      <TextField label="region" />
+      <TextField label="Name" required />
+      <TextField label="WhatsApp" />
+      <TextField label="WeChat" />
+      <TextField label="Region" />
     </form>
   );
 }

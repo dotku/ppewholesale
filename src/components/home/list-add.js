@@ -109,7 +109,8 @@ export default function ListAdd({ onSubmit }) {
   const handleSubmit = (e) => {
     // console.log(e);
     // console.log(formData);
-    formData["lastUpdated"] = Math.floor(Date.now() / 1000);
+    formData["_createTime"] = Math.floor(Date.now() / 1000);
+    formData["_updateTime"] = Math.floor(Date.now() / 1000);
     onSubmit(formData);
   };
   // console.log("before render email", email, formData);
@@ -126,7 +127,6 @@ export default function ListAdd({ onSubmit }) {
               rows={3}
               autoFocus
               required
-              value={formData["message"]}
               onChange={handleChange("message")}
             />
           </div>

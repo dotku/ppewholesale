@@ -12,7 +12,8 @@ import {
   Avatar,
 } from "@material-ui/core";
 import moment from "moment";
-import { Close, Delete, Search, Storefront } from "@material-ui/icons";
+import { useSelector } from "react-redux";
+import { VisibilityOff as Hide, Search, Storefront } from "@material-ui/icons";
 import { NumberFormat, CurrencyFormat } from "../common/formats";
 import { blue, red } from "@material-ui/core/colors";
 export default function ContentItem({
@@ -27,6 +28,12 @@ export default function ContentItem({
   email,
   idx,
 }) {
+  // let user = useSelector(({ auth }) => auth);
+  // const handleHidePost = () => {
+  //   if (!user) {
+  //     alert();
+  //   }
+  // };
   return (
     <Card variant="outlined" style={{ marginTop: idx ? "20px" : 0 }}>
       <CardHeader
@@ -43,9 +50,9 @@ export default function ContentItem({
             <IconButton>
               {type === "sale" ? <Storefront /> : <Search />}
             </IconButton>
-            <IconButton color="secondary">
-              <Close />
-            </IconButton>
+            {/* <IconButton title="hide from your view" onClick={handleHidePost}>
+              <Hide />
+            </IconButton> */}
           </>
         }
         title={email || "jay.lin@dkwholesale.us"}
@@ -96,7 +103,7 @@ export default function ContentItem({
       </CardContent>
       <CardActions style={{ float: "right" }}>
         {status !== "closed" ? (
-          <Button size="small" href="mailto:jay.lin@dkwholesale.us">
+          <Button size="small" href={`mailto:${email}`}>
             {type === "sale" ? (
               <span message="I want to buy">Buy</span>
             ) : (

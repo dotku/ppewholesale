@@ -18,13 +18,21 @@ import User from "../user";
 
 export default function Home() {
   const [data, setData] = useState(useSelector(({ posts }) => posts));
+  const db = firebase.firestore();
   const dispatch = useDispatch();
 
   useEffect(() => {
     // console.log("useEffect");
-    const db = firebase.firestore();
+
     const getPosts = async () => {
-      const docs = (await db.collection("posts").get()).docs;
+      const docs = (
+        await db
+          .collection("posts")
+          .orderBy("_updateTime", "desc")
+          .limit(100)
+          .get()
+      ).docs;
+      console.log(docs);
       const posts = docs.map(async (doc) => {
         let post = await doc.data();
         // console.log("doc", doc);
@@ -42,15 +50,26 @@ export default function Home() {
       // console.log( "dispatch home index", dispatch({ type: "FETCH_POSTS", payload: result }));
       setData(result);
     };
+
     setTimeout(() => {
       getPosts();
     }, 1000);
   }, []);
+  const addPost = (post) => {
+    db.collection("posts")
+      .add(post)
+      .then((rsp) => {
+        data.unshift(post);
+        setData([...data]);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
   const handleSubmit = (formData) => {
+    addPost(formData);
     // console.log(formData);
-    data.unshift(formData);
     // console.log(data);
-    setData([...data]);
   };
   return (
     <Container className="main">

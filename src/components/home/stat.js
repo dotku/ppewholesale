@@ -49,14 +49,15 @@ export default function HomeStat() {
           Total Listing: {data.filter((item) => item.type === "sale").length}
         </Typography>
         <Typography>
-          Total Value: <CurrencyFormat value={totalSales.totalValue} />
+          Total Value: <CurrencyFormat value={totalSales.totalValue / 1000} />K
         </Typography>
         <h3>Buy</h3>
         <Typography>
           Total Listing: {data.filter((item) => item.type !== "sale").length}
         </Typography>
         <Typography>
-          Total Value: <CurrencyFormat value={totalBuys.totalValue} />
+          Total Value:{" "}
+          <CurrencyFormat value={totalBuys.totalValue / 1000000000} />B
         </Typography>
       </CardContent>
     </Card>

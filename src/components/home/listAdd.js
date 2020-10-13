@@ -8,6 +8,7 @@ import {
   Typography,
   FormHelperText,
   FormControl,
+  InputLabel,
 } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
@@ -155,7 +156,13 @@ export default function ListAdd({ onSubmit }) {
           <div>
             {disableEmail ? (
               <FormControl style={{ margin: "8px" }}>
-                <Input readOnly label="Email" value={formData["email"]} />
+                <InputLabel htmlFor="email">Email</InputLabel>
+                <Input
+                  readOnly
+                  label="Email"
+                  id="email"
+                  value={formData["email"]}
+                />
                 <FormHelperText>{emailHelpText.LOGIN_DEFAULT}</FormHelperText>
               </FormControl>
             ) : (
@@ -171,6 +178,9 @@ export default function ListAdd({ onSubmit }) {
                 }
               />
             )}
+          </div>
+          <div>
+            <TextField label="Phone" onChange={handleChange("phone")} />
           </div>
 
           <Button type="submit">Post</Button>

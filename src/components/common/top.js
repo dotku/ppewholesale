@@ -1,11 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  Container,
-  Link,
-  Grid,
-  Typography,
-  IconButton,
-} from "@material-ui/core";
+import { Link, Grid, Typography, IconButton } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import LoginDialog from "./LoginDialog";
 import React, { useState } from "react";
@@ -14,48 +7,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { useSelector } from "react-redux";
 import UserAvatar from "../profile/userAvatar";
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-  },
-  cardMedia: {
-    paddingTop: "56.25%", // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-  small: {
-    width: theme.spacing(4),
-    height: theme.spacing(4),
-  },
-  large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-  },
-}));
-
 export default function Top() {
-  const classes = useStyles();
   const auth = useSelector((state) => state.auth);
   const [dialogOpen, setDialogOpen] = useState(false);
   const handleClose = () => {

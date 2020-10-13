@@ -10,6 +10,7 @@ import {
   Button,
   IconButton,
   Avatar,
+  TextField,
 } from "@material-ui/core";
 import moment from "moment";
 import { Search, Storefront } from "@material-ui/icons";
@@ -80,8 +81,15 @@ export default function ContentItem({
             width: "100%",
           }}
         ></div>
-        <Typography>{message}</Typography>
-        <Divider />
+        {/* <Typography>{message}</Typography> */}
+        <TextField
+          value={message}
+          multiline
+          fullWidth
+          InputProps={{
+            readOnly: true,
+          }}
+        />
         {location && <Typography>Location: {location}</Typography>}
         {unit && (
           <Typography>

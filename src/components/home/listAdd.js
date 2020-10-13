@@ -155,7 +155,7 @@ export default function ListAdd({ onSubmit }) {
           <div>
             {disableEmail ? (
               <FormControl style={{ margin: "8px" }}>
-                <Input disabled label="Email" value={formData["email"]} />
+                <Input readOnly label="Email" value={formData["email"]} />
                 <FormHelperText>{emailHelpText.LOGIN_DEFAULT}</FormHelperText>
               </FormControl>
             ) : (

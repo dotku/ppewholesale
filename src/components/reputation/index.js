@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import Sponsors from "../sponsors";
 import ReputationAddEditForm from "./ReputationAddEditForm";
 import ReputationContentItem from "./ReputationContentItem";
+import OraganizationStat from "../organizations/organizationStat";
 const data = [
   { name: "Titan Medico Pte Ltd", region: "Singapore" },
   { name: "Nakawat Ptd Ltd", region: "Singapore" },
@@ -117,26 +118,6 @@ const data = [
   { name: "Osmotec", region: "Australia" },
   { name: "Noble C Beauty", region: "" },
 ];
-
-function CountByRegion({ rows = [] }) {
-  let result = {};
-  result["Unkown"] = 0;
-  rows.forEach((row) => {
-    if (row.region) {
-      if (result[row.region]) {
-        result[row.region]++;
-      } else {
-        result[row.region] = 1;
-      }
-    } else {
-      result["Unkown"]++;
-    }
-  });
-
-  return Object.entries(result).map((v, k) => (
-    <div key={k}>{`${v[0]}: ${v[1]}`}</div>
-  ));
-}
 export default function ReputationIndex() {
   const [keyword, setKeyword] = useState("");
 
@@ -148,13 +129,6 @@ export default function ReputationIndex() {
       </Alert>
       <Grid container spacing={2} style={{ marginTop: "8px" }}>
         <Grid item md={8}>
-          <TextField
-            label="search"
-            style={{ marginBottom: "20px" }}
-            onKeyUp={(e) => {
-              setKeyword(e.target.value || "");
-            }}
-          />
           {data
             .filter((item) => item.name.includes(keyword))
             .map((item, idx) => (
@@ -162,19 +136,20 @@ export default function ReputationIndex() {
             ))}
         </Grid>
         <Grid item md={4}>
+          <TextField
+            label="Search"
+            style={{ marginBottom: "20px" }}
+            onKeyUp={(e) => {
+              setKeyword(e.target.value || "");
+            }}
+            fullWidth
+          />
           <Card variant="outlined">
             <CardContent>
               <ReputationAddEditForm />
             </CardContent>
           </Card>
-          <Card variant="outlined" style={{ marginTop: "20px" }}>
-            <CardContent>
-              <Typography variant="h5">Stat</Typography>
-              <div style={{ textAlign: "right" }}>Total: {data.length}</div>
-              <Divider />
-              <CountByRegion rows={data} />
-            </CardContent>
-          </Card>
+          <OraganizationStat data={data} />
           <Sponsors />
         </Grid>
       </Grid>

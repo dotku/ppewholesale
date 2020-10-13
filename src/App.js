@@ -1,8 +1,9 @@
 import "./App.css";
-import "firebase/auth";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/performance";
 import firebaseConfig from "./config/firebase";
 import Footer from "./components/common/footer";
 import React from "react";
@@ -15,8 +16,10 @@ const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
+  firebase.performance();
 }
 firebase.auth().onAuthStateChanged((rspUser) => {
+  // console.log("firebase init auth", rspUser);
   store.dispatch({ type: "LOGIN", payload: rspUser });
 });
 

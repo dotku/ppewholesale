@@ -15,9 +15,9 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-app.delete("/posts/:id", async ({ params }, res) => {
+app.delete("/:collection/:id", async ({ params }, res) => {
   try {
-    const rsp = await db.collection("posts").doc(params.id).delete();
+    const rsp = await db.collection(params.collection).doc(params.id).delete();
     res.send(rsp);
   } catch (e) {
     res.send(404, e);

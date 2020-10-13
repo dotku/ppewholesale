@@ -1,5 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Link, Grid, Typography } from "@material-ui/core";
+import {
+  Container,
+  Link,
+  Grid,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import LoginDialog from "./LoginDialog";
 import React, { useState } from "react";
@@ -58,47 +64,39 @@ export default function Top() {
   return (
     <AppBar position="fixed" className="no-print">
       <Toolbar>
-        <Container>
-          <Grid container>
-            <Grid item md={6} style={{ display: "flex", alignItems: "center" }}>
-              <Link
-                href="#"
-                color="inherit"
+        <Grid container style={{ justifyContent: "space-between" }}>
+          <Grid item md={6} style={{ display: "flex", alignItems: "center" }}>
+            <IconButton>
+              <SupervisedUserCircleIcon
                 style={{
-                  textDecoration: "none",
+                  color: "white",
                 }}
-              >
-                <SupervisedUserCircleIcon
-                  className={classes.icon}
-                  style={{
-                    display: "inline-block",
-                    verticalAlign: "middle",
-                    marginTop: "-3px",
-                  }}
-                />
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  noWrap
-                  display="inline"
-                >
-                  PPE Wholesale &lt;3 US
-                </Typography>
-              </Link>
-            </Grid>
-            <Grid
-              item
-              md={6}
+              />
+            </IconButton>
+            <Link
+              href="#"
+              color="inherit"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
+                textDecoration: "none",
               }}
             >
-              <UserAvatar user={auth} />
-            </Grid>
+              <Typography variant="h6" color="inherit" noWrap display="inline">
+                PPE Wholesale &lt;3 US
+              </Typography>
+            </Link>
           </Grid>
-        </Container>
+          <Grid
+            item
+            md={6}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+            }}
+          >
+            <UserAvatar user={auth} />
+          </Grid>
+        </Grid>
       </Toolbar>
       <LoginDialog open={dialogOpen} onClose={handleClose} />
     </AppBar>

@@ -18,15 +18,31 @@ export default function Organizations() {
   useEffect(() => {
     const db = firebase.firestore();
     async function getDocs() {
-      const docsRef = await db.collection("organizations").limit(100).get();
-      setOrganizations(
-        docsRef.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
+      const docsRef = await db
+        .collection("organizations")
+        .orderBy("name")
+        .limit(100)
+        .get();
+      const newOrgs = new Map();
+      docsRef.docs.forEach((doc) => {
+        const data = doc.data();
+        let found = newOrgs.get(data.name.trim().toLowerCase());
+        if (found) {
+          let newOrg = {
+            ...found,
+            count: found.count ? ++found.count : 2,
           };
-        })
-      );
+          console.log("found", newOrg);
+          newOrgs.set(data.name.trim().toLowerCase(), newOrg);
+        } else {
+          newOrgs.set(data.name.trim().toLowerCase(), {
+            id: doc.id,
+            ...data,
+          });
+        }
+      });
+      console.log(newOrgs);
+      setOrganizations([...newOrgs.values()]);
     }
     getDocs();
     // const docs = await
@@ -56,7 +72,7 @@ export default function Organizations() {
       <Typography variant="h3">Organizations</Typography>
       <Grid container spacing={2} style={{ marginTop: "20px" }}>
         <Grid item md={8}>
-          {organizations.map(({ name, region, level }, idx) => (
+          {organizations.map(({ name, region, level, count }, idx) => (
             <Card key={idx} variant="outlined" style={{ marginBottom: "8px" }}>
               <CardContent
                 style={{
@@ -65,6 +81,7 @@ export default function Organizations() {
                 }}
               >
                 <div>Organization: {name}</div>
+                {count && <Typography>Count: {count}</Typography>}
                 {region && <div>Region: {region}</div>}
                 {level && <div>Rank: {level}</div>}
               </CardContent>

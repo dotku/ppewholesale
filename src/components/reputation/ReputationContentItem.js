@@ -1,7 +1,9 @@
 import { CardContent, Card, Typography } from "@material-ui/core";
 import React from "react";
 
-export default function ReputationContentItem({ name, region, level }) {
+export default function ReputationContentItem(props) {
+  const { name, region, level, count } = props;
+  console.log("props", props);
   return (
     <Card
       variant="outlined"
@@ -18,6 +20,7 @@ export default function ReputationContentItem({ name, region, level }) {
       <CardContent>
         <div style={{}}>
           <Typography>Name: {name}</Typography>
+          {count && <Typography>Count: {count}</Typography>}
           {region && <Typography>Region: {region}</Typography>}
           {level && <Typography>Level: {level}</Typography>}
         </div>

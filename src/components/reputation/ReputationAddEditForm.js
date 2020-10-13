@@ -30,7 +30,7 @@ export default function ReputationAddEditForm({ onSubmit }) {
         onSubmit && onSubmit(formData);
       })
       .catch((e) => {
-        console.error("add organzation failed");
+        console.error("add organzation failed", e);
       });
   };
   const handleChange = (name) => (e) => {
@@ -41,7 +41,12 @@ export default function ReputationAddEditForm({ onSubmit }) {
   };
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
-      <TextField label="Name" required onChange={handleChange("name")} />
+      <TextField
+        label="Name"
+        required
+        onChange={handleChange("name")}
+        defaultValue={formData["name"]}
+      />
       <TextField label="WhatsApp" onChange={handleChange("whatsapp")} />
       <TextField label="WeChat" onChange={handleChange("wechat")} />
       <TextField label="Region" onChange={handleChange("region")} />

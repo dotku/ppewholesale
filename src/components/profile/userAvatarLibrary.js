@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
 import firebase from "firebase/app";
 import "firebase/storage";
 import "firebase/auth";
@@ -12,17 +17,38 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Badge,
 } from "@material-ui/core";
-import { MoreHoriz as More } from "@material-ui/icons";
+import {
+  Check,
+  CheckCircleRounded,
+  MoreHoriz as More,
+} from "@material-ui/icons";
 import { useDispatch } from "react-redux";
 
-export default function UserAvatarLibrary({ user }) {
+function AvatarImage({ photoURL }) {
+  return (
+    <div
+      style={{
+        height: "178px",
+        width: "100%",
+        overflowY: "hidden",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <img src={photoURL} width="100%" />
+    </div>
+  );
+}
+
+function UserAvatarLibrary({ user }, ref) {
   const { currentUser } = firebase.auth();
   const { providerData } = currentUser;
   const [images, setImages] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [currentImage, setCurrentImage] = useState("");
-  const [currentSource, setCurrentSource] = useState("");
+  const [ifDelete, setIfDelete] = useState(false);
   const storage = firebase.storage();
   const dispatch = useDispatch();
 
@@ -35,6 +61,9 @@ export default function UserAvatarLibrary({ user }) {
       source: providerId,
     }));
   };
+  useImperativeHandle(ref, () => ({
+    genImages,
+  }));
   const genImages = async () => {
     const storageRef = storage.ref();
     const res = await storageRef.child(`users/${user.uid}/avatars`).listAll();
@@ -55,9 +84,13 @@ export default function UserAvatarLibrary({ user }) {
   };
   const handleMoreClick = (e) => {
     setAnchorEl(e.currentTarget);
-    const { image, source } = e.currentTarget.dataset;
-    setCurrentImage(image);
-    setCurrentSource(source);
+    const { url, source } = e.currentTarget.dataset;
+    setCurrentImage(url);
+    if (source === "firebase" && user.photoURL !== url) {
+      setIfDelete(true);
+    } else {
+      setIfDelete(false);
+    }
   };
 
   const handleClose = (e) => {
@@ -99,27 +132,24 @@ export default function UserAvatarLibrary({ user }) {
             <Grid item md={3} key={idx}>
               <Card style={{ margin: "8px" }} variant="outlined">
                 <CardContent>
-                  <div
-                    style={{
-                      height: "178px",
-                      overflowY: "hidden",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <img src={photoURL} width="100%" />
-                  </div>
+                  <AvatarImage photoURL={photoURL} />
                 </CardContent>
                 <CardActions style={{ justifyContent: "flex-end" }}>
-                  <IconButton
-                    onClick={handleMoreClick}
-                    data-image={photoURL}
-                    data-source={source}
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                  >
-                    <More />
-                  </IconButton>
+                  {user.photoURL !== photoURL ? (
+                    <IconButton
+                      onClick={handleMoreClick}
+                      data-url={photoURL}
+                      data-source={source}
+                      aria-controls="simple-menu"
+                      aria-haspopup="true"
+                    >
+                      <More />
+                    </IconButton>
+                  ) : (
+                    <IconButton disabled>
+                      <More />
+                    </IconButton>
+                  )}
                 </CardActions>
               </Card>
             </Grid>
@@ -131,7 +161,7 @@ export default function UserAvatarLibrary({ user }) {
             onClose={handleClose}
           >
             <MenuItem onClick={handleAvatarSet}>Set As Profile Avatar</MenuItem>
-            {currentSource === "firebase" && (
+            {ifDelete && (
               <MenuItem onClick={handleAvatarDelete}>Delete</MenuItem>
             )}
           </Menu>
@@ -142,3 +172,5 @@ export default function UserAvatarLibrary({ user }) {
     </Box>
   );
 }
+
+export default forwardRef(UserAvatarLibrary);

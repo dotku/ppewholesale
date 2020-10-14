@@ -32,7 +32,7 @@ export default function Top() {
         <MobileContainer>
           <Grid container style={{ justifyContent: "space-between" }}>
             <Grid item md={6} style={{ display: "flex", alignItems: "center" }}>
-              <IconButton>
+              <IconButton href="#">
                 <SupervisedUserCircleIcon
                   style={{
                     color: "white",

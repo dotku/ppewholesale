@@ -1,9 +1,14 @@
-import React, { useRef } from "react";
-import { Container, Input, IconButton } from "@material-ui/core";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Container,
+  Input,
+  IconButton,
+  TextField,
+  Snackbar,
+} from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import atoms from "../instapaper/components/atoms";
 import theme from "../instapaper/theme/instapaper/theme";
 import withTheme from "../instapaper/pages/instapaper/withTheme";
@@ -11,41 +16,33 @@ import Box from "@material-ui/core/Box";
 import { useDispatch, useSelector } from "react-redux";
 import ReactJson from "react-json-view";
 import { getNoCircleStringify } from "../common/utility";
-import UserProfileUpdateForm from "./userProfileUpdateForm";
 import UserSocialLoginProviders from "./userSocialLogin";
 import { genFirebaseUpload } from "../common/utility";
 import { v4 as uuid } from "uuid";
 import UserAvatarLibrary from "./userAvatarLibrary";
 import firebase from "firebase/app";
 import "firebase/auth";
+import UserAvatarProfile from "./userAvatarProfile";
 
-const { Avatar, Typography } = atoms;
+const { Typography } = atoms;
 
-const useStyles = makeStyles({
-  editButton: {
-    marginLeft: 0,
-    marginTop: 12,
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: 20,
-      marginTop: 0,
-    },
-  },
-  settings: {
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: 5,
-    },
-  },
-});
-
-function ProfilePage() {
-  const user = useSelector((state) => state.auth);
+function ProfileIndex() {
+  const defaultUser = useSelector((state) => state.auth);
+  const { currentUser: user } = firebase.auth();
+  console.log(defaultUser, user);
+  // const [user, setUser] = useState(defaultUser);
+  // console.log("profilePage", user);
   const profilePhotoFile = useRef("photoFile");
   const dispatch = useDispatch();
-  console.log("profilePage", user);
-  const upSm = useMediaQuery(theme.breakpoints.up("sm"), {
-    defaultMatches: true,
-  });
+  const avatarsRef = useRef();
+  const [snackopen, setSnackOpen] = useState(false);
+  const [snackMessage, setSnackMessage] = useState("");
+  let timeout;
 
+  useEffect(() => {
+    // console.log("useEffect", user);
+    // setUser(defaultUser);
+  }, []);
   if (!user) {
     return <Container className="main">Loading ...</Container>;
   }
@@ -67,6 +64,7 @@ function ProfilePage() {
         .updateProfile(newProfile)
         .then(() => {
           dispatch({ type: "UPDATE_USER", payload: newProfile });
+          avatarsRef.current.genImages();
         })
         .catch((err) => {
           console.error(err);
@@ -76,12 +74,102 @@ function ProfilePage() {
     }
   };
 
+  const handleSnackClose = () => {
+    setSnackOpen(false);
+  };
+
+  const handleChange = (name) => (e) => {
+    e.persist();
+    clearTimeout(timeout);
+    timeout = setTimeout(async () => {
+      console.log({ [name]: e.target.value });
+      switch (name) {
+        case "email":
+          // const credential = firebase.auth.EmailAuthProvider.credentialWithLink(
+          //   user.email,
+          //   window.location.href
+          // );
+          firebase
+            .auth()
+            .currentUser.reauthenticateWithPopup(
+              new firebase.auth.OAuthProvider("google.com")
+            )
+            .then((rsp) => {
+              console.log("auth rsp", rsp);
+              user
+                .updateEmail(e.target.value)
+                .then(() => {
+                  setSnackMessage("profile info update successfully");
+                  setSnackOpen(true);
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            });
+          // console.log("credential", credential);
+
+          // user
+          //   .reauthenticateWithCredential(credential)
+          //   .then(function () {
+          //     // User re-authenticated.
+          //   })
+          //   .catch(function (error) {
+          //     // An error happened.
+          //   });
+
+          break;
+        case "phoneNumber":
+          // await firebase.auth()
+          // user
+          //   .updatePhoneNumber(e.target.value)
+          //   .then(() => {
+          //     setSnackMessage("profile info update successfully");
+          //     setSnackOpen(true);
+          //   })
+          //   .catch((err) => {
+          //     console.error(err);
+          //   });
+          break;
+        default:
+          user
+            .updateProfile({ [name]: e.target.value })
+            .then((rsp) => {
+              console.log("updateRsp", rsp);
+              setSnackMessage("profile info update successfully");
+              setSnackOpen(true);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+      }
+    }, 500);
+
+    //
+  };
+
   return (
     <React.Fragment>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        open={snackopen}
+        autoHideDuration={3000}
+        onClose={handleSnackClose}
+      >
+        <Alert>{snackMessage}</Alert>
+      </Snackbar>
       <Box className="main" component="main" maxWidth={935} margin="auto">
         <Box mb="44px">
           <Grid container>
-            <Grid item xs={6} md={4}>
+            <Grid
+              item
+              xs={6}
+              md={4}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <IconButton
                 onClick={() => {
                   console.log(
@@ -91,15 +179,7 @@ function ProfilePage() {
                   //profilePhotoFile.click();
                 }}
               >
-                <Avatar
-                  ultraLarge={upSm}
-                  medium={!upSm}
-                  style={{ margin: "auto" }}
-                  alt="My profile"
-                  src={user ? user.photoURL : ""}
-                >
-                  Photo
-                </Avatar>
+                <UserAvatarProfile user={user} />
               </IconButton>
               <input
                 type="file"
@@ -116,6 +196,7 @@ function ProfilePage() {
                     <Input
                       defaultValue={user.displayName}
                       style={{ fontSize: "inherit" }}
+                      onChange={handleChange("displayName")}
                     />
                   </Typography>
                   {/* <Button
@@ -133,11 +214,21 @@ function ProfilePage() {
                 </Grid>
               </Box>
               <Box mb="10px">
-                <Input
+                <TextField
+                  label="Email"
                   defaultValue={user.email}
+                  onChange={handleChange("email")}
                   style={{ minWidth: "300px" }}
                 />
               </Box>
+              {/* <Box mb="20px">
+                <TextField
+                  label="Phone Number"
+                  defaultValue={user.phoneNumber}
+                  onChange={handleChange("phoneNumber")}
+                  style={{ minWidth: "300px" }}
+                />
+              </Box> */}
 
               <Box mb="20px">
                 <Grid container spacing={5}>
@@ -171,7 +262,7 @@ function ProfilePage() {
         </Box>
         <Box>
           <Box mb="20px">
-            <UserAvatarLibrary user={user} />
+            <UserAvatarLibrary ref={avatarsRef} user={user} />
           </Box>
           <Box mb="10px">
             {`Last Login: ${new Date(
@@ -186,7 +277,6 @@ function ProfilePage() {
           <Button variant="outlined" href="#/logout">
             Logout
           </Button>
-          <UserProfileUpdateForm {...user} />
           <UserSocialLoginProviders {...user} />
         </Box>
         <Box>
@@ -200,4 +290,4 @@ function ProfilePage() {
   );
 }
 
-export default withTheme(theme)(ProfilePage);
+export default withTheme(theme)(ProfileIndex);

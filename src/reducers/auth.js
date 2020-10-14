@@ -24,6 +24,11 @@ const auth = (state = null, { type, payload }) => {
     // return authRsp;
     // const user = await firebase.auth().login();
     // return user;
+    case "UPDATE_USER":
+      return {
+        ...state,
+        ...payload,
+      };
     case "LOGOUT":
       console.log("reducer logout");
       return null;

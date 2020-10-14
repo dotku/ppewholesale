@@ -11,6 +11,12 @@ import rootReducer from "./reducers";
 import RouterIndex from "./config/router";
 import thunkMiddleware from "redux-thunk";
 import Top from "./components/common/top";
+import {
+  unstable_createMuiStrictModeTheme,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+
+const theme = unstable_createMuiStrictModeTheme();
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
@@ -29,11 +35,13 @@ function App() {
   // const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   return (
     <Provider store={store}>
-      <div className="App">
-        <Top />
-        <RouterIndex />
-        <Footer />
-      </div>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <Top />
+          <RouterIndex />
+          <Footer />
+        </div>
+      </ThemeProvider>
     </Provider>
   );
 }

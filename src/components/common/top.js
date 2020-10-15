@@ -29,46 +29,39 @@ export default function Top() {
   return (
     <AppBar position="fixed" className="no-print">
       <Toolbar>
-        <MobileContainer>
-          <Grid container style={{ justifyContent: "space-between" }}>
-            <Grid item md={6} style={{ display: "flex", alignItems: "center" }}>
-              <IconButton href="#">
-                <SupervisedUserCircleIcon
-                  style={{
-                    color: "white",
-                  }}
-                />
-              </IconButton>
-              <Link
-                href="#"
-                color="inherit"
+        <Grid container style={{ justifyContent: "space-between" }}>
+          <Grid item md={6} style={{ display: "flex", alignItems: "center" }}>
+            <IconButton href="#">
+              <SupervisedUserCircleIcon
                 style={{
-                  textDecoration: "none",
+                  color: "white",
                 }}
-              >
-                <Typography
-                  variant="h6"
-                  color="inherit"
-                  noWrap
-                  display="inline"
-                >
-                  PPE Wholesale &lt;3 US
-                </Typography>
-              </Link>
-            </Grid>
-            <Grid
-              item
-              md={6}
+              />
+            </IconButton>
+            <Link
+              href="#"
+              color="inherit"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
+                textDecoration: "none",
               }}
             >
-              <UserAvatar user={auth} />
-            </Grid>
+              <Typography variant="h6" color="inherit" noWrap display="inline">
+                PPE Wholesale &lt;3 US
+              </Typography>
+            </Link>
           </Grid>
-        </MobileContainer>
+          <Grid
+            item
+            md={6}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+            }}
+          >
+            <UserAvatar user={auth} />
+          </Grid>
+        </Grid>
       </Toolbar>
       <LoginDialog open={dialogOpen} onClose={handleClose} />
     </AppBar>

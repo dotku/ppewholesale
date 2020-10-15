@@ -70,7 +70,7 @@ export default function Home() {
     // console.log(data);
   };
   return (
-    <Container className="main">
+    <Container className="main" maxWidth={false}>
       <Grid container spacing={2}>
         <Grid md={8} xs={12} item>
           {data

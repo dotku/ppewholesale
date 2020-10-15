@@ -9,6 +9,7 @@ import {
   FormHelperText,
   FormControl,
   InputLabel,
+  Box,
 } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
@@ -32,8 +33,67 @@ const emailHelpText = {
     "This email is registered by other user, please use other email",
 };
 
+export function ContactSection({
+  disableEmail,
+  disablePhoneNumber,
+  emailError,
+  formData,
+  handleChange,
+}) {
+  return (
+    <Box>
+      <Typography variant="subtitle1">Contact</Typography>
+      <div>
+        {disableEmail ? (
+          <TextField
+            variant="filled"
+            label="Email"
+            value={formData["email"]}
+            InputProps={{ readOnly: true }}
+          />
+        ) : (
+          <TextField
+            label="Email"
+            error={emailError}
+            defaultValue={localStorage.getItem("email") || ""}
+            onChange={handleChange("email")}
+            helperText={
+              emailError
+                ? emailHelpText.NOLOGIN_EXITED_EMAIL
+                : emailHelpText.NOLOGIN_DEFAULT
+            }
+          />
+        )}
+      </div>
+      <div>
+        {disablePhoneNumber ? (
+          <TextField
+            variant="filled"
+            label="Phone Number"
+            value={formData["phoneNumber"]}
+            InputProps={{ readOnly: true }}
+          />
+        ) : (
+          <TextField
+            label="Phone Number"
+            error={emailError}
+            defaultValue={localStorage.getItem("email") || ""}
+            onChange={handleChange("email")}
+            helperText={
+              emailError
+                ? emailHelpText.NOLOGIN_EXITED_EMAIL
+                : emailHelpText.NOLOGIN_DEFAULT
+            }
+          />
+        )}
+      </div>
+    </Box>
+  );
+}
+
 export default function ListAdd({ onSubmit }) {
   let email = "name@domain.com";
+  let phoneNumber;
   let user = useSelector(({ auth }) => auth);
   let timeout;
   const classes = useStyles();
@@ -42,19 +102,30 @@ export default function ListAdd({ onSubmit }) {
     email,
   });
   const [disableEmail, setDisableEmail] = useState(false);
+  const [disablePhoneNumber, setDisablePhoneNumber] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [contactSection, setContactSection] = useState(false);
   useEffect(() => {
     // console.log("useEffect user", user);
     if (user) {
-      email = user.email;
-      setDisableEmail(true);
+      if (user.email) {
+        email = user.email;
+        setDisableEmail(true);
+      }
+      if (user.phoneNumber) {
+        phoneNumber = user.phoneNumber;
+        setDisablePhoneNumber(true);
+      }
     } else if (localStorage.getItem("email")) {
       email = localStorage.getItem("email");
       setDisableEmail(false);
     } else {
       setDisableEmail(false);
     }
-    setFormData({ email });
+    setFormData({ email, phoneNumber });
+    setTimeout(() => {
+      setContactSection(true);
+    }, 2000);
   }, [user]);
 
   useEffect(() => {
@@ -152,37 +223,19 @@ export default function ListAdd({ onSubmit }) {
           <div>
             <TextField label="Location" onChange={handleChange("location")} />
           </div>
-          <Typography variant="subtitle1">Contact</Typography>
-          <div>
-            {disableEmail ? (
-              <FormControl style={{ margin: "8px" }}>
-                <InputLabel htmlFor="email">Email</InputLabel>
-                <Input
-                  readOnly
-                  label="Email"
-                  id="email"
-                  value={formData["email"]}
-                />
-                <FormHelperText>{emailHelpText.LOGIN_DEFAULT}</FormHelperText>
-              </FormControl>
-            ) : (
-              <TextField
-                label="Email"
-                error={emailError}
-                defaultValue={localStorage.getItem("email") || ""}
-                onChange={handleChange("email")}
-                helperText={
-                  emailError
-                    ? emailHelpText.NOLOGIN_EXITED_EMAIL
-                    : emailHelpText.NOLOGIN_DEFAULT
-                }
-              />
-            )}
-          </div>
-          <div>
-            <TextField label="Phone" onChange={handleChange("phone")} />
-          </div>
-
+          {contactSection ? (
+            <ContactSection
+              {...{
+                disableEmail,
+                disablePhoneNumber,
+                emailError,
+                formData,
+                handleChange,
+              }}
+            />
+          ) : (
+            <div>Loading...</div>
+          )}
           <Button type="submit">Post</Button>
         </form>
       </CardContent>

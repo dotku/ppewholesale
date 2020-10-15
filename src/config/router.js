@@ -21,10 +21,13 @@ import ReputationIndex from "../components/reputation";
 import Sources from "../components/sources/index";
 import SourceSafe from "../components/sources/indexSafe";
 import SourcesWarning from "../components/sources/indexWarning";
+import Organizations from "../components/organizations";
+import Clipboard from "../components/clipboard";
 
 const routers = [
   { path: "/", component: Home, exact: true },
   { path: "/admin", component: Admin },
+  { path: "/clipboard", component: Clipboard },
   { path: "/connections", components: [Partners, Clients], exact: true },
   { path: "/connections/clients", component: Clients, exact: true },
   { path: "/connections/partners", component: Partners, exact: true },
@@ -38,6 +41,7 @@ const routers = [
   { path: "/mask", component: Mask, exact: true },
   { path: "/order", component: Order, exact: true },
   { path: "/order", component: Orders, exact: true },
+  { path: "/organizations", component: Organizations },
   { path: "/paperbase", component: Paperbase, exact: true },
   { path: "/payment/:value", component: Payment, exact: true },
   { path: "/price/gloves", component: Gloves, exact: true },

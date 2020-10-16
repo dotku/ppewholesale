@@ -15,6 +15,9 @@ export default function Sponsors() {
           <Typography>US Chitu Entertainment Media</Typography>
         </li>
         <li>
+          <Typography>Lifesaving Global LLC</Typography>
+        </li>
+        <li>
           <Typography>Skynet LLC</Typography>
         </li>
         <li>

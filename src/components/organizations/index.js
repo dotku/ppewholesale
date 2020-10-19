@@ -5,6 +5,7 @@ import {
   Typography,
   Grid,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -72,7 +73,7 @@ export default function Organizations() {
       <Typography variant="h3">Organizations</Typography>
       <Grid container spacing={2} style={{ marginTop: "20px" }}>
         <Grid item md={8}>
-          {organizations.map(({ name, region, level, count }, idx) => (
+          {organizations.map(({ name, region, level, count, id }, idx) => (
             <Card key={idx} variant="outlined" style={{ marginBottom: "8px" }}>
               <CardContent
                 style={{
@@ -80,10 +81,20 @@ export default function Organizations() {
                     level && level.includes("scam") ? "mistyrose" : "inherit",
                 }}
               >
-                <div>Organization: {name}</div>
-                {count && <Typography>Count: {count}</Typography>}
-                {region && <div>Region: {region}</div>}
-                {level && <div>Rank: {level}</div>}
+                <div>
+                  <Typography variant="body1">
+                    <Link to={`./organizations/${name}-${id}`}>{name}</Link>
+                  </Typography>
+                </div>
+                {count && (
+                  <Typography variant="body2">Count: {count}</Typography>
+                )}
+                {region && (
+                  <Typography variant="body2">Region: {region}</Typography>
+                )}
+                {level && (
+                  <Typography variant="body2">Rank: {level}</Typography>
+                )}
               </CardContent>
             </Card>
           ))}

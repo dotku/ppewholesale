@@ -56,10 +56,12 @@ function UserAvatarLibrary({ user }, ref) {
     genImages();
   }, []);
   const getImagesFromProviders = () => {
-    return providerData.map(({ photoURL, providerId }) => ({
-      photoURL,
-      source: providerId,
-    }));
+    return providerData
+      .filter((item) => item.photoURL)
+      .map(({ photoURL, providerId }) => ({
+        photoURL,
+        source: providerId,
+      }));
   };
   useImperativeHandle(ref, () => ({
     genImages,

@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useSelector } from "react-redux";
-import UserAvatar from "../profile/userAvatar";
+import UserAvatar from "../user/userAvatar";
 
 function MobileContainer(props) {
   const theme = useTheme();

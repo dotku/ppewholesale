@@ -15,7 +15,7 @@ import Orders from "../components/orders";
 import Paperbase from "../components/paperbase/Paperbase";
 import Partners from "../components/connections/partners";
 import Payment from "../components/payment";
-import Profile from "../components/profile";
+import Profile from "../components/user";
 import React from "react";
 import ReputationIndex from "../components/reputation";
 import Sources from "../components/sources/index";
@@ -23,10 +23,16 @@ import SourceSafe from "../components/sources/indexSafe";
 import SourcesWarning from "../components/sources/indexWarning";
 import Organizations from "../components/organizations";
 import Clipboard from "../components/clipboard";
+import OrganizationDetail from "../components/organizations/organizationDetail";
+import Message from "../components/message";
+import Certifications from "../components/certifications";
+import ValidatorIndex from "../components/validators";
+import ImgurTest from "../components/imgur";
 
 const routers = [
   { path: "/", component: Home, exact: true },
   { path: "/admin", component: Admin },
+  { path: "/certifications", component: Certifications },
   { path: "/clipboard", component: Clipboard },
   { path: "/connections", components: [Partners, Clients], exact: true },
   { path: "/connections/clients", component: Clients, exact: true },
@@ -34,22 +40,31 @@ const routers = [
   { path: "/glove", component: Glove, exact: true },
   { path: "/home", component: Home, exact: true },
   { path: "/instapaper", component: Profile, exact: true },
+  { path: "/imgur", component: ImgurTest, exact: true },
   { path: "/lab/auth", component: Auth },
   { path: "/login", component: Login },
   { path: "/logout", component: Logout },
   { path: "/loi", component: LOI },
   { path: "/mask", component: Mask, exact: true },
+  { path: "/message/:id", component: Message, exact: true },
   { path: "/order", component: Order, exact: true },
   { path: "/order", component: Orders, exact: true },
-  { path: "/organizations", component: Organizations },
+  { path: "/organizations", component: Organizations, exact: true },
+  {
+    path: "/organizations/:name-:id",
+    component: OrganizationDetail,
+    exact: true,
+  },
   { path: "/paperbase", component: Paperbase, exact: true },
   { path: "/payment/:value", component: Payment, exact: true },
   { path: "/price/gloves", component: Gloves, exact: true },
   { path: "/profile", component: Profile, exact: true },
   { path: "/reputation", component: ReputationIndex },
+  { path: "/sign-in", component: Login },
   { path: "/sources", component: Sources, exact: true },
   { path: "/sources/safe", component: SourceSafe, exact: true },
   { path: "/sources/warning", component: SourcesWarning, exact: true },
+  { path: "/validators", component: ValidatorIndex },
 ];
 
 export default function RouterIndex() {
@@ -73,7 +88,7 @@ function RouteWithSubRoutes({
   component: Component,
   components,
 }) {
-  // console.log(component);
+  console.log("exact", exact);
   return (
     <Route path={path} exact={exact}>
       {components &&

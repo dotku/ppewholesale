@@ -2,11 +2,18 @@ require("dotenv").config();
 
 const admin = require("firebase-admin");
 const express = require("express");
+const Buffer = require("buffer");
+const mustacheExpress = require("mustache-express");
 const cors = require("cors");
+const { genPVCTable } = require("./genPVCTable");
 const app = express();
+const url = require("url");
+
 const port = 3030;
 
 app.use(cors());
+// app.set("view engine", "mustache");
+// app.engine("mustache", mustacheExpress());
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
@@ -26,6 +33,19 @@ app.delete("/:collection/:id", async ({ params }, res) => {
 
 app.get("/", (req, res) => {
   res.send("hello world!");
+});
+
+app.get("/pvc-data", async (req, res) => {
+  const result = await genPVCTable();
+  // res.send(Promise.resolve(genPVCTable()));
+  res.set("Content-Type", "text/html");
+  res.send(`<table>${result}</table>`);
+});
+
+app.get("/imgur-callback", (req, res) => {
+  console.log(req);
+  console.log("url.parse", url.parse(req.originalUrl));
+  res.send({ message: "imgur" });
 });
 
 app.get("/collections", ({}, res) => {

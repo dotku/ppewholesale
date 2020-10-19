@@ -38,41 +38,41 @@ export default function ImgurTest() {
   //   curl --location --request POST 'https://api.imgur.com/3/image' \
   // --header 'Authorization: Client-ID {{clientId}}' \
   // --form 'image=R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
-
+  const imgurUpload = () => {
+    Axios.post(
+      "https://api.imgur.com/3/image?client_id=546c25a59c58ad7",
+      {
+        image: imageSrc,
+      },
+      {
+        headers: {
+          // Authorization: `Bearer ${query.get("access_token")}`,
+          Authorization: `Client-ID ${id}`,
+        },
+      }
+    )
+      .then((rsp) => {
+        console.log(rsp);
+        setUploadedImageSrc(rsp.data.data.link);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
   const handleImageUpload = () => {
     if (query.get("access_token")) {
-      Axios.post(
-        "https://api.imgur.com/3/image?client_id=546c25a59c58ad7",
-        {
-          image: imageSrc,
-        },
-        {
-          headers: {
-            // Authorization: `Bearer ${query.get("access_token")}`,
-            Authorization: `Client-ID ${id}`,
-          },
-        }
-      )
-        .then((rsp) => {
-          console.log(rsp);
-          setUploadedImageSrc(rsp.data.data.link);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
     } else {
       console.error("no access_token", query.get("access_token"));
-      window.location.href = apiUrl;
+      // window.location.href = apiUrl;
     }
   };
   return (
     <Container className="main">
       <Typography variant="h5">IMGUR</Typography>
       <div>client id: 49eb107b8b51638</div>
-      <div>client secret: 4181bec627a849c49008dff3bfce4df95ec8a305</div>
       <div>
         <Grid container spacing={1}>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="h6">Preview</Typography>
             <div>
               <img src={imageSrc} style={{ maxWidth: "100%" }} />
@@ -80,12 +80,11 @@ export default function ImgurTest() {
             <div>
               <Input fullWidth defaultValue={imageSrc} />
             </div>
-
             <div>
-              <Button onClick={handleImageUpload}>Upload</Button>
+              <Button onClick={imgurUpload}>Upload</Button>
             </div>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Typography variant="h6">Uploaded</Typography>
             <div>
               <img src={uploadedImageSrc} style={{ maxWidth: "100%" }} />

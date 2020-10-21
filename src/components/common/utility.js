@@ -1,3 +1,5 @@
+import firebase from "firebase/app";
+import "firebase/storage";
 function getNoCircleStringify(json) {
   let cache = [];
   let result = JSON.stringify(json, (key, value) => {
@@ -14,4 +16,16 @@ function getNoCircleStringify(json) {
   return result;
 }
 
-export { getNoCircleStringify };
+async function genFirebaseUpload({ file, path }) {
+  const storageRef = firebase.storage().ref();
+  const fileRef = storageRef.child(path);
+  try {
+    const fileUploadedRef = await fileRef.put(file);
+    console.log(fileUploadedRef);
+    return fileUploadedRef;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export { getNoCircleStringify, genFirebaseUpload };

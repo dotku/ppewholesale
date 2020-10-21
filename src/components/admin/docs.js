@@ -53,7 +53,11 @@ export default function Docs({ currentCollection }) {
           <Card key={idx} variant="outlined" style={{ marginBottom: "20px" }}>
             <CardContent>
               <div>id: {item.id}</div>
-              <div>message: {item.message}</div>
+              {item.message && <div>message: {item.message}</div>}
+              {item.name && <div>name: {item.name}</div>}
+              <div style={{ wordBreak: "break-word" }}>
+                {JSON.stringify(item)}
+              </div>
             </CardContent>
             <CardActions style={{ justifyContent: "flex-end" }}>
               <Button onClick={handleItemDelete(item.id)}>Delete</Button>

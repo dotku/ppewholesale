@@ -97,7 +97,7 @@ export default function Providers() {
           </ListItem>
           <ListItem button>
             <ListItemText
-              primary="Rizhao Sanqi Medical & Health Articles Co., Ltd"
+              primary="Rizhao Sanqi Medical &amp; Health Articles Co., Ltd"
               secondary="日照三奇"
             />
           </ListItem>

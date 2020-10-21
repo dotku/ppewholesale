@@ -1,9 +1,11 @@
 import {
+  Box,
   // Button,
   // Card,
   // CardContent,
   Container,
   Grid,
+  NoSsr,
   // Typography,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
@@ -14,10 +16,15 @@ import { useSelector } from "react-redux";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import HomeStat from "./stat";
+import UserColumn from "../user/userColumn";
+import { useTheme } from "@material-ui/core/styles";
+import { useMediaQuery } from "react-responsive";
 
 export default function Home() {
   const [data, setData] = useState(useSelector(({ posts }) => posts));
   const db = firebase.firestore();
+  const isMobile = useMediaQuery({ query: "(max-width: 614px)" });
+  console.log("matches", isMobile);
 
   useEffect(() => {
     // console.log("useEffect");
@@ -70,21 +77,26 @@ export default function Home() {
     // console.log(data);
   };
   return (
-    <Container className="main" maxWidth={false}>
-      <Grid container spacing={2}>
-        <Grid md={8} xs={12} item>
-          {data
-            ? data.map((item, idx) => (
-                <ContentItem key={idx} {...item} idx={idx} />
-              ))
-            : "Loading..."}
+    <NoSsr>
+      <Container className="main" maxWidth={"lg"}>
+        <Grid container spacing={2}>
+          <Grid item md={3}>
+            <UserColumn />
+          </Grid>
+          <Grid md={6} xs={12} item>
+            {data
+              ? data.map((item, idx) => (
+                  <ContentItem key={idx} {...item} idx={idx} />
+                ))
+              : "Loading..."}
+          </Grid>
+          <Grid md={3} xs={12} item>
+            <ListAdd onSubmit={handleSubmit} />
+            <HomeStat />
+            <Sponsors />
+          </Grid>
         </Grid>
-        <Grid md={4} xs={12} item>
-          <ListAdd onSubmit={handleSubmit} />
-          <HomeStat />
-          <Sponsors />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </NoSsr>
   );
 }

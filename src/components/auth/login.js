@@ -1,5 +1,5 @@
 import React from "react";
-import * as firebase from "firebase";
+import firebase from "firebase/app";
 import { StyledFirebaseAuth } from "react-firebaseui";
 import { useSelector } from "react-redux";
 import { Button, Container, Typography } from "@material-ui/core";
@@ -24,8 +24,8 @@ export default function Login({ uiConfigNew = {} }) {
   const redirect = new URLSearchParams(window.location.search.substring(1)).get(
     "redirect"
   );
-  if (user && redirect) {
-    return <Redirect to={{ pathname: redirect }} />;
+  if (user) {
+    return <Redirect to={{ pathname: redirect || "/" }} />;
   }
   return (
     <Container className="main">

@@ -1,5 +1,5 @@
 import { Container } from "@material-ui/core";
-import * as firebase from "firebase";
+import firebase from "firebase/app";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";

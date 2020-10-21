@@ -13,7 +13,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import moment from "moment";
-import { Search, Storefront } from "@material-ui/icons";
+import { Email, Search, Storefront } from "@material-ui/icons";
 import { NumberFormat, CurrencyFormat } from "../common/formats";
 export default function ContentItem({
   message,
@@ -109,16 +109,15 @@ export default function ContentItem({
       </CardContent>
       <CardActions style={{ float: "right" }}>
         {status !== "closed" ? (
-          <Button size="small" href={`mailto:${email}`}>
-            {type === "sale" ? (
-              <span message="I want to buy">Buy</span>
-            ) : (
-              <span message="I can sell you">Sell</span>
-            )}
-          </Button>
+          <IconButton
+            href={`mailto:${email}`}
+            title={type === "sale" ? "I want to buy" : "I can sell you"}
+          >
+            <Email />
+          </IconButton>
         ) : (
           <Button disabled>
-            <span message="I can sell you">
+            <span title="I can sell you">
               <s>Closed</s>
             </span>
           </Button>

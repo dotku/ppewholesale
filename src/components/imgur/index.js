@@ -1,5 +1,5 @@
 import { Button, Container, Typography, Input, Grid } from "@material-ui/core";
-import Axios from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams, useLocation } from "react-router-dom";
 
@@ -14,7 +14,8 @@ function useQuery() {
 }
 
 export default function ImgurTest() {
-  const id = "49eb107b8b51638";
+  // const id = "49eb107b8b51638";
+  const id = process.env.REACT_APP_IMGUR_CLIENT_ID;
   const secret = "4181bec627a849c49008dff3bfce4df95ec8a305";
   const query = useQuery();
   const [imageSrc, setImageSrc] = useState(
@@ -39,18 +40,19 @@ export default function ImgurTest() {
   // --header 'Authorization: Client-ID {{clientId}}' \
   // --form 'image=R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
   const imgurUpload = () => {
-    Axios.post(
-      "https://api.imgur.com/3/image?client_id=546c25a59c58ad7",
-      {
-        image: imageSrc,
-      },
-      {
-        headers: {
-          // Authorization: `Bearer ${query.get("access_token")}`,
-          Authorization: `Client-ID ${id}`,
+    axios
+      .post(
+        `https://api.imgur.com/3/image?client_id=${process.env.REACT_APP_IMGUR_CLIENT_ID}`,
+        {
+          image: imageSrc,
         },
-      }
-    )
+        {
+          headers: {
+            // Authorization: `Bearer ${query.get("access_token")}`,
+            Authorization: `Client-ID ${process.env.REACT_APP_IMGUR_CLIENT_ID}`,
+          },
+        }
+      )
       .then((rsp) => {
         console.log(rsp);
         setUploadedImageSrc(rsp.data.data.link);
@@ -69,7 +71,7 @@ export default function ImgurTest() {
   return (
     <Container className="main">
       <Typography variant="h5">IMGUR</Typography>
-      <div>client id: 49eb107b8b51638</div>
+      <div>client id: {process.env.REACT_APP_IMGUR_CLIENT_ID}</div>
       <div>
         <Grid container spacing={1}>
           <Grid item md={6} xs={12}>

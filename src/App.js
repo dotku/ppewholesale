@@ -15,6 +15,7 @@ import {
   unstable_createMuiStrictModeTheme,
   ThemeProvider,
 } from "@material-ui/core/styles";
+import { genUsers } from "./actions/users";
 
 const theme = unstable_createMuiStrictModeTheme();
 

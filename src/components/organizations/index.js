@@ -5,7 +5,6 @@ import {
   Typography,
   Grid,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -13,6 +12,7 @@ import { useState } from "react";
 import ReputationAddEditForm from "../reputation/ReputationAddEditForm";
 import OraganizationStat from "./organizationStat";
 import Sponsors from "../sponsors";
+import OrganizationCard from "./organizationCard";
 
 export default function Organizations() {
   const [organizations, setOrganizations] = useState([]);
@@ -74,29 +74,10 @@ export default function Organizations() {
       <Grid container spacing={2} style={{ marginTop: "20px" }}>
         <Grid item md={8}>
           {organizations.map(({ name, region, level, count, id }, idx) => (
-            <Card key={idx} variant="outlined" style={{ marginBottom: "8px" }}>
-              <CardContent
-                style={{
-                  backgroundColor:
-                    level && level.includes("scam") ? "mistyrose" : "inherit",
-                }}
-              >
-                <div>
-                  <Typography variant="body1">
-                    <Link to={`./organizations/${name}-${id}`}>{name}</Link>
-                  </Typography>
-                </div>
-                {count && (
-                  <Typography variant="body2">Count: {count}</Typography>
-                )}
-                {region && (
-                  <Typography variant="body2">Region: {region}</Typography>
-                )}
-                {level && (
-                  <Typography variant="body2">Rank: {level}</Typography>
-                )}
-              </CardContent>
-            </Card>
+            <OrganizationCard
+              {...{ name, region, level, count, id }}
+              key={idx}
+            />
           ))}
         </Grid>
         <Grid item md={4}>

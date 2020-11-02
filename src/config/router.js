@@ -29,30 +29,9 @@ import Certifications from "../components/certifications";
 import ValidatorIndex from "../components/validators";
 import ImgurTest from "../components/imgur";
 import Search from "../components/search";
-
-function Facebook() {
-  return (
-    <div className="main" style={{ textAlign: "center" }}>
-      Sorry, we don't Support Facebook yet.
-    </div>
-  );
-}
-
-function FacebookNote() {
-  return (
-    <div className="main">
-      <ul>
-        <li>2018 - JSX</li>
-        <li>2015.09 - GraphQL</li>
-        <li>2015.06 - Redux</li>
-        <li>2015.03 - Babel</li>
-        <li>2014 - Flux</li>
-        <li>2013 - React</li>
-        <li>2004 - Facebook Launched</li>
-      </ul>
-    </div>
-  );
-}
+import FacebookIndex from "../components/facebook";
+import FacebookNote from "../components/facebook/facebookNote";
+import Thunk from "../components/test/thunk";
 
 export const routers = [
   { path: "/", component: Home, exact: true },
@@ -64,7 +43,7 @@ export const routers = [
   { path: "/connections/partners", component: Partners, exact: true },
   {
     path: "/facebook",
-    component: Facebook,
+    component: FacebookIndex,
     exact: true,
   },
   {
@@ -100,6 +79,7 @@ export const routers = [
   { path: "/sources", component: Sources, exact: true },
   { path: "/sources/safe", component: SourceSafe, exact: true },
   { path: "/sources/warning", component: SourcesWarning, exact: true },
+  { path: "/test/thunk", component: Thunk, exact: true },
   { path: "/validators", component: ValidatorIndex },
   { component: Search, status: 404 }, // must be final row for 404
 ];

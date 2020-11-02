@@ -7,9 +7,10 @@ import {
   List,
   ListItem,
 } from "@material-ui/core";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { genUsers } from "../../actions/users";
 import UserAvatar from "../user/userAvatar";
 
 function ListItemLink(props) {
@@ -17,7 +18,12 @@ function ListItemLink(props) {
 }
 
 export default function UserColumn() {
+  const users = useSelector(({ users }) => users);
   const user = useSelector(({ auth }) => auth);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(genUsers());
+  }, []);
   return (
     <div>
       <Box>
@@ -43,22 +49,30 @@ export default function UserColumn() {
       <Box>
         <Typography variant="subtitle1">
           <Link to="/organizations">Organizations</Link>
+          {
+            // @todo: add orgnizations here
+          }
         </Typography>
       </Box>
       <Divider />
       <Box>
         <Typography variant="subtitle1">
           <Link to="/contacts">Contacts</Link>
-          <List dense={true}>
-            <ListItemLink to="/message/item1">Item 1</ListItemLink>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
-            <ListItem>Item 5</ListItem>
-          </List>
+          {users.length > 0 ? (
+            <List dense={true}>
+              {users.map(({ id, name }, idx) => (
+                <ListItemLink key={idx} to={`/message/${id}`}>
+                  {name}
+                </ListItemLink>
+              ))}
+            </List>
+          ) : (
+            // @todo: add user search
+            <div>No contacts</div>
+          )}
         </Typography>
       </Box>
-      <Box textAlign="center">
+      {/* <Box textAlign="center">
         {user ? (
           <Button variant="outlined" href="#/logout">
             Logout
@@ -66,7 +80,7 @@ export default function UserColumn() {
         ) : (
           <Button href="#/sign-in">Sign In</Button>
         )}
-      </Box>
+      </Box> */}
     </div>
   );
 }

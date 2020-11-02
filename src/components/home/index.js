@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import ListAdd from "./listAdd";
-import ContentItem from "./list-item";
+import ItemContent from "./list-item";
 import Sponsors from "../sponsors";
 import { useSelector } from "react-redux";
 import firebase from "firebase/app";
@@ -60,6 +60,7 @@ export default function Home() {
       getPosts();
     }, 1000);
   }, []);
+
   const addPost = (post) => {
     db.collection("posts")
       .add(post)
@@ -71,6 +72,7 @@ export default function Home() {
         console.error(e);
       });
   };
+
   const handleSubmit = (formData) => {
     addPost(formData);
     // console.log(formData);
@@ -86,12 +88,12 @@ export default function Home() {
           <Grid md={6} xs={12} item>
             {data
               ? data.map((item, idx) => (
-                  <ContentItem key={idx} {...item} idx={idx} />
+                  <ItemContent key={idx} {...item} idx={idx} />
                 ))
               : "Loading..."}
           </Grid>
           <Grid md={3} xs={12} item>
-            <ListAdd onSubmit={handleSubmit} />
+            <ListAdd onSubmit={handleSubmit} autoFocus />
             <HomeStat />
             <Sponsors />
           </Grid>

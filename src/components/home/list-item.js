@@ -11,11 +11,13 @@ import {
   IconButton,
   Avatar,
   TextField,
+  GridList,
+  GridListTile,
 } from "@material-ui/core";
 import moment from "moment";
 import { Email, Search, Storefront } from "@material-ui/icons";
 import { NumberFormat, CurrencyFormat } from "../common/formats";
-export default function ContentItem({
+export default function ItemContent({
   message,
   type,
   unit,
@@ -26,6 +28,7 @@ export default function ContentItem({
   _updateTime,
   email,
   idx,
+  images,
 }) {
   // let user = useSelector(({ auth }) => auth);
   // const handleHidePost = () => {
@@ -105,6 +108,17 @@ export default function ContentItem({
           <Typography>
             Total: <CurrencyFormat value={unit * price} />
           </Typography>
+        )}
+        {images && images.length && (
+          <GridList key={idx} cols={3} style={{ marginTop: "8px" }}>
+            {images.map((image, idx) => (
+              <GridListTile cols={1}>
+                <a href={image}>
+                  <img src={image} />
+                </a>
+              </GridListTile>
+            ))}
+          </GridList>
         )}
       </CardContent>
       <CardActions style={{ float: "right" }}>

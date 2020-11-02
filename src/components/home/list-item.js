@@ -17,6 +17,7 @@ import {
 import moment from "moment";
 import { Email, Search, Storefront } from "@material-ui/icons";
 import { NumberFormat, CurrencyFormat } from "../common/formats";
+
 export default function ItemContent({
   message,
   type,
@@ -29,6 +30,7 @@ export default function ItemContent({
   email,
   idx,
   images,
+  author,
 }) {
   // let user = useSelector(({ auth }) => auth);
   // const handleHidePost = () => {
@@ -36,6 +38,13 @@ export default function ItemContent({
   //     alert();
   //   }
   // };
+
+  function getTitle() {
+    if (email && author) return <a href={`mailto:${email}`}>{author}</a>;
+    if (email && !author) return <a href={`mailto:${email}`}>{email}</a>;
+    if (!email && author) return email;
+    return "Anonymity";
+  }
   return (
     <Card variant="outlined" style={{ marginTop: idx ? "20px" : 0 }}>
       <CardHeader
@@ -57,7 +66,7 @@ export default function ItemContent({
             </IconButton> */}
           </>
         }
-        title={email || "jay.lin@dkwholesale.us"}
+        title={getTitle()}
         subheader={
           <>
             <span>

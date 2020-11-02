@@ -28,8 +28,33 @@ import Message from "../components/message";
 import Certifications from "../components/certifications";
 import ValidatorIndex from "../components/validators";
 import ImgurTest from "../components/imgur";
+import Search from "../components/search";
 
-const routers = [
+function Facebook() {
+  return (
+    <div className="main" style={{ textAlign: "center" }}>
+      Sorry, we don't Support Facebook yet.
+    </div>
+  );
+}
+
+function FacebookNote() {
+  return (
+    <div className="main">
+      <ul>
+        <li>2018 - JSX</li>
+        <li>2015.09 - GraphQL</li>
+        <li>2015.06 - Redux</li>
+        <li>2015.03 - Babel</li>
+        <li>2014 - Flux</li>
+        <li>2013 - React</li>
+        <li>2004 - Facebook Launched</li>
+      </ul>
+    </div>
+  );
+}
+
+export const routers = [
   { path: "/", component: Home, exact: true },
   { path: "/admin", component: Admin },
   { path: "/certifications", component: Certifications },
@@ -37,6 +62,16 @@ const routers = [
   { path: "/connections", components: [Partners, Clients], exact: true },
   { path: "/connections/clients", component: Clients, exact: true },
   { path: "/connections/partners", component: Partners, exact: true },
+  {
+    path: "/facebook",
+    component: Facebook,
+    exact: true,
+  },
+  {
+    path: "/facebook/note",
+    component: FacebookNote,
+    exact: true,
+  },
   { path: "/glove", component: Glove, exact: true },
   { path: "/home", component: Home, exact: true },
   { path: "/instapaper", component: Profile, exact: true },
@@ -60,11 +95,13 @@ const routers = [
   { path: "/price/gloves", component: Gloves, exact: true },
   { path: "/profile", component: Profile, exact: true },
   { path: "/reputation", component: ReputationIndex },
+  { path: "/search", component: Search },
   { path: "/sign-in", component: Login },
   { path: "/sources", component: Sources, exact: true },
   { path: "/sources/safe", component: SourceSafe, exact: true },
   { path: "/sources/warning", component: SourcesWarning, exact: true },
   { path: "/validators", component: ValidatorIndex },
+  { component: Search, status: 404 }, // must be final row for 404
 ];
 
 export default function RouterIndex() {

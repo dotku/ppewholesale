@@ -121,7 +121,7 @@ export default function ItemContent({
         {images && images.length && (
           <GridList key={idx} cols={3} style={{ marginTop: "8px" }}>
             {images.map((image, idx) => (
-              <GridListTile cols={1}>
+              <GridListTile cols={1} key={idx}>
                 <a href={image}>
                   <img src={image} />
                 </a>

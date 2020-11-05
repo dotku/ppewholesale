@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { genUsers } from "../../actions/users";
 import UserAvatar from "../user/userAvatar";
+import UserWidget from "../user/userWidget";
 
 function ListItemLink(props) {
   return <ListItem button component={Link} {...props} />;
@@ -39,6 +40,7 @@ export default function UserColumn() {
               Profile
             </Link>
           </Typography>
+          <UserWidget />
         </Box>
       </Box>
       <Divider />

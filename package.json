@@ -40,6 +40,7 @@
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",
     "redux-thunk": "^2.3.0",
+    "reduxr-scoped-reducer": "0.0.1",
     "ua-parser-js": "^0.7.21",
     "uuid": "^8.3.1"
   },

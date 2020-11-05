@@ -18,7 +18,7 @@ import moment from "moment";
 import { Email, Search, Storefront } from "@material-ui/icons";
 import { NumberFormat, CurrencyFormat } from "../common/formats";
 
-export default function ItemContent({
+export default function PostItem({
   message,
   type,
   unit,

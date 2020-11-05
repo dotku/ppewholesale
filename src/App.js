@@ -19,7 +19,7 @@ import { genUsers } from "./actions/users";
 
 const theme = unstable_createMuiStrictModeTheme();
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);

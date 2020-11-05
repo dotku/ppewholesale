@@ -87,7 +87,9 @@ export default function Home() {
           </Grid>
           <Grid md={6} xs={12} item>
             {data
-              ? data.map((item, idx) => <ItemContent key={idx} {...item} />)
+              ? data.map((item, idx) => (
+                  <ItemContent key={idx} {...{ ...item, idx }} />
+                ))
               : "Loading..."}
           </Grid>
           <Grid md={3} xs={12} item>

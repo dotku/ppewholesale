@@ -32,6 +32,7 @@ import Search from "../components/search";
 import FacebookIndex from "../components/facebook";
 import FacebookNote from "../components/facebook/facebookNote";
 import Thunk from "../components/test/thunk";
+import PostAttachment from "../components/post/PostAttachment";
 
 export const routers = [
   { path: "/", component: Home, exact: true },
@@ -81,6 +82,7 @@ export const routers = [
   { path: "/sources/warning", component: SourcesWarning, exact: true },
   { path: "/test/thunk", component: Thunk, exact: true },
   { path: "/validators", component: ValidatorIndex },
+  { path: "/upload", component: PostAttachment },
   { component: Search, status: 404 }, // must be final row for 404
 ];
 

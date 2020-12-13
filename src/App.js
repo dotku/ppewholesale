@@ -36,13 +36,13 @@ function App() {
   // const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          <Top />
-          <RouterIndex />
-          <Footer />
-        </div>
-      </ThemeProvider>
+      {/* <ThemeProvider theme={theme}> */}
+      <div className="App">
+        <Top />
+        <RouterIndex />
+        <Footer />
+      </div>
+      {/* </ThemeProvider> */}
     </Provider>
   );
 }

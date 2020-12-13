@@ -9,7 +9,7 @@ import {
   // Typography,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import ListAdd from "./listAdd";
+import PostInput from "../post/PostInput";
 import PostItem from "./PostItem";
 import Sponsors from "../sponsors";
 import { useDispatch, useSelector } from "react-redux";
@@ -90,10 +90,11 @@ export default function Home() {
     <NoSsr>
       <Container className="main" maxWidth={"lg"}>
         <Grid container spacing={2}>
-          <Grid item md={3}>
+          <Grid item md={2}>
             <UserColumn />
           </Grid>
-          <Grid md={6} xs={12} item>
+          <Grid md={7} xs={12} item>
+            <PostInput onSubmit={handleSubmit} autoFocus />
             {posts
               ? posts.map((item, idx) => (
                   <PostItem key={idx} {...{ ...item, idx }} />
@@ -101,7 +102,6 @@ export default function Home() {
               : "Loading..."}
           </Grid>
           <Grid md={3} xs={12} item>
-            <ListAdd onSubmit={handleSubmit} autoFocus />
             <HomeStat />
             <Sponsors />
           </Grid>

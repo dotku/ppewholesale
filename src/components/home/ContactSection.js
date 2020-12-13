@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, Typography, Box } from "@material-ui/core";
-import { emailHelpText } from "./listAdd";
+import { emailHelpText } from "../post/PostInput";
 import { useSelector } from "react-redux";
 
 export function ContactSection({

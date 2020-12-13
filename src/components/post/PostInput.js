@@ -13,9 +13,10 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Axios from "axios";
-import { ContactSection } from "./ContactSection";
+import { ContactSection } from "../home/ContactSection";
 import ImageIcon from "@material-ui/icons/Image";
 import { genPostFilesUpload } from "../../actions/postfiles";
+import PostAttachment from "./PostAttachment";
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -175,6 +176,10 @@ export default function ListAdd({ onSubmit, autoFocus }) {
     console.log("setFormData", formData);
     onSubmit(formData);
   };
+
+  const handleDragEnter = () => {
+    console.log("handleDragEnter");
+  };
   // console.log("before render email", email, formData);
   return (
     <Card variant="outlined" style={{ marginBottom: "20px" }}>
@@ -227,6 +232,7 @@ export default function ListAdd({ onSubmit, autoFocus }) {
               </IconButton>
             </label>
             <Files files={postfiles} />
+            <PostAttachment />
           </div>
           {contactSection ? (
             <ContactSection

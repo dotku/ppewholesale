@@ -1,3 +1,7 @@
+/**
+ * @note, unstable_createMuiStrictModeTheme is conflict with material-ui-dropzone,
+ * temporary stop using it
+ */
 import "./App.css";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
@@ -12,12 +16,13 @@ import RouterIndex from "./config/router";
 import thunkMiddleware from "redux-thunk";
 import Top from "./components/common/top";
 import {
-  unstable_createMuiStrictModeTheme,
+  // unstable_createMuiStrictModeTheme,
   ThemeProvider,
 } from "@material-ui/core/styles";
 import { genUsers } from "./actions/users";
 
-const theme = unstable_createMuiStrictModeTheme();
+// @note, conflict with material-ui-dropzone
+// const theme = unstable_createMuiStrictModeTheme();
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
@@ -36,13 +41,13 @@ function App() {
   // const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   return (
     <Provider store={store}>
-      {/* <ThemeProvider theme={theme}> */}
-      <div className="App">
-        <Top />
-        <RouterIndex />
-        <Footer />
-      </div>
-      {/* </ThemeProvider> */}
+      <ThemeProvider>
+        <div className="App">
+          <Top />
+          <RouterIndex />
+          <Footer />
+        </div>
+      </ThemeProvider>
     </Provider>
   );
 }
